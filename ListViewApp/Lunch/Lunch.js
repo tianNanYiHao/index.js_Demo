@@ -59,13 +59,14 @@ export default class Lunch extends Component {
 	//返回具体cell
 	renderRow(dateRow, sessionID, rowID) {
 		console.log('-----> ' + dateRow.title);
+		console.log('../icon/' + dateRow.iconName);
 		return (
 			<View style={style.cellViewStyle}>
-				<Image source={{ uri: dateRow.iconName }} style={style.iconStyle}></Image>
+				<Image source={{uri:dateRow.iconName}} style={style.iconStyle}></Image>
 				<View style={style.titleBackGroundViewStyle}>
 					<Text style={style.topTitleStyle}>{dateRow.title} </Text>
 					<Text style={style.bottomTitleStyle}>{dateRow.money} </Text>
-					<View style={style.lineViewStyle}/>
+					<View style={style.lineViewStyle} />
 				</View>
 			</View>
 		);
@@ -114,10 +115,10 @@ const style = StyleSheet.create({
 		fontSize: 15,
 		marginTop: 5,
 	},
-	lineViewStyle:{
-		backgroundColor:'#8e8e8e',
-		height:0.5,
-		width:scerrnW
+	lineViewStyle: {
+		backgroundColor: '#8e8e8e',
+		height: 0.5,
+		width: scerrnW
 	}
 
 });
