@@ -1,0 +1,3 @@
+rootProject.name = 'collectionView'
+
+include ':app'
