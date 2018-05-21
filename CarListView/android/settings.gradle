@@ -1,0 +1,3 @@
+rootProject.name = 'CarListView'
+
+include ':app'
