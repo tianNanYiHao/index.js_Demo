@@ -12,15 +12,15 @@
 import * as LoginTypes from '../ActionTypes/LoginActionTypes'
 
 
-const initState = {
-	logFlag: ''
+var logFlag = {
+    logFlag: ''
 }
 
 
 var user = {
-	name: '',
-	age: '',
-	sex: ''
+    name: '',
+    age: '',
+    sex: ''
 }
 
 
@@ -29,11 +29,11 @@ var user = {
  * @returns {{type: string, logFlag: *, user: null}}
  */
 export function loginNoState() {
-	return {
-		type: LoginTypes.LoginNoState,
-		logFlag: '请登录',
-		user: user
-	}
+    return {
+        type: LoginTypes.LoginNoState,
+        logFlag: '请登录',
+        user: user
+    }
 }
 
 /**
@@ -43,11 +43,11 @@ export function loginNoState() {
  */
 export function loginSuccess(userInfo) {
 
-	// 解析json字符串
-	let userInfoObj = JSON.parse(userInfo)
-	return dispatch => {
-		dispatch(this.saveUserInfo(userInfoObj))
-	}
+    // 解析json字符串
+    let userInfoObj = JSON.parse(userInfo)
+    return dispatch => {
+        dispatch(this.saveUserInfo(userInfoObj))
+    }
 }
 
 /**
@@ -55,11 +55,11 @@ export function loginSuccess(userInfo) {
  * @returns {{type: string, logFlag: string, user: null}}
  */
 export function loginError() {
-	return {
-		type: LoginTypes.LoginError,
-		logFlag: '登陆错误',
-		user: null
-	}
+    return {
+        type: LoginTypes.LoginError,
+        logFlag: '登陆错误',
+        user: null
+    }
 }
 
 /**
@@ -67,10 +67,10 @@ export function loginError() {
  * @returns {{type: string, logFlag: string}}
  */
 export function shouldLogOut() {
-	return {
-		type:LoginTypes.LogShouldout,
-		logFlag:'退出',
-	}
+    return {
+        type: LoginTypes.LogShouldout,
+        logFlag: '退出',
+    }
 }
 
 /**
@@ -78,11 +78,11 @@ export function shouldLogOut() {
  * @returns {{type: string, logFlag: string, user: null}}
  */
 export function logOutSuccess() {
-	return {
-		type: LoginTypes.LogOutSuccess,
-		logFlag: '登出成功',
-		user: null
-	}
+    return {
+        type: LoginTypes.LogOutSuccess,
+        logFlag: '登出成功',
+        user: null
+    }
 }
 
 /**
@@ -91,10 +91,10 @@ export function logOutSuccess() {
  * @returns {{type: string, logFlag: string, user: *}}
  */
 export function saveUserInfo(userInfo) {
-	return {
-		type: LoginTypes.LoginSuccess,
-		logFlag: '登陆成功',
-		user: userInfo
-	}
+    return {
+        type: LoginTypes.LoginSuccess,
+        logFlag: '登陆成功',
+        user: userInfo
+    }
 }
 
