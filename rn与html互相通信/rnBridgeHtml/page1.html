@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Web向RN发送消息</title>
+	<script type="text/javascript">
+
+
+		// 模拟 HTML -> RN
+        function sendData() {
+            window.postMessage('web向RN发送的消息,只能传递一个字符串类型的参数,    ps:这是一个RN弹框')
+        }
+
+        // 模拟 RN -> HTML, 方式一 js注入法
+        function spsReturn(tn, state) {
+            document.write(`<h1>${tn}</h1><div>${state}</div>`)
+        }
+
+        // 模拟 RN -> HTML, 方式二 监听message事件
+        window.document.addEventListener('message', function(e) {
+	        document.write(`<h1>${e.data}</h1>`)
+        })
+
+	</script>
+</head>
+<body>
+
+<p>lolololo</p>
+<p>bobobobo</p>
+<h1>web向RN发送消息</h1>
+<button type="button" onclick="sendData()">点我发送消息</button>
+</body>
+</html>
