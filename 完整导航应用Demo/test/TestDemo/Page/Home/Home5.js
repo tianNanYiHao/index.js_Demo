@@ -38,7 +38,9 @@ export default class Home5 extends BaseComponent {
                     <TouchableOpacity onPress={() => this.action(1)}>
                         <Text style={styles.text}>{'GoBack:Home2'}</Text>
                     </TouchableOpacity>
-
+                    <TouchableOpacity onPress={() => this.action(2)}>
+                        <Text style={styles.text}>{'resetRoute: LHome->LHome3'}</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -47,6 +49,10 @@ export default class Home5 extends BaseComponent {
     action(tag) {
         if (tag === 1) {
             this.goBack('LHome2')
+        }
+        if (tag === 2) {
+            this.reset([{"routeName":"LHome"},{"routeName":"LHome3"}],1)
+
         }
     }
 

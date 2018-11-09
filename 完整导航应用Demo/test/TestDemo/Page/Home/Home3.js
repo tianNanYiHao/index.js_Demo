@@ -29,7 +29,7 @@ export default class Home3 extends BaseComponent {
         return (
 
             <View>
-                {this.renderNoLeftItemNaivgationBar('Home3页面')}
+                {this.renderNomalNavigationBar('Home3页面')}
                 <View style={{
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -40,6 +40,9 @@ export default class Home3 extends BaseComponent {
                         <Text style={styles.text}>{'Push:Home4'}</Text>
                     </TouchableOpacity>
 
+                    <TouchableOpacity onPress={() => this.action(2)}>
+                        <Text style={styles.text}>{'popToTop'}</Text>
+                    </TouchableOpacity>
                 </View>
 
             </View>
@@ -51,7 +54,9 @@ export default class Home3 extends BaseComponent {
     action(tag) {
         if (tag === 1) {
             this.push('LHome4')
-
+        }
+        if (tag === 2) {
+            this.popToTop();
         }
     }
 
