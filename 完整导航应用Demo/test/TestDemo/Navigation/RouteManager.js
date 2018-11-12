@@ -71,7 +71,7 @@ export default class RouteManager {
      * @param delay 避免重复点击
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static push(routeName, params, delay = true, useTopLevelNavigator = false) {
+    static push(routeName, params, delay = true, useTopLevelNavigator = true) {
         let nowTime = new Date().getTime();
         if ((nowTime - this.lastActionTime) <= this.intervalTime && delay) {
             console.log('短时间点击太过频繁');
@@ -83,7 +83,7 @@ export default class RouteManager {
         this.lastActionTime = nowTime;
 
         if (useTopLevelNavigator) {
-            this.topLevelNavigator.props.navigation.push(routeName, params);
+            this.topLevelNavigator._navigation.push(routeName, params);
         } else {
             this.navigation.navigate(routeName, params);
         }
@@ -94,22 +94,21 @@ export default class RouteManager {
      * @param routeName 路由名
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static goBack(routeName, useTopLevelNavigator = false) {
+    static goBack(routeName, useTopLevelNavigator = true) {
         if (routeName) {
             if (useTopLevelNavigator) {
-                let index = this.topLevelNavigator.props.navigation.state.routes.findIndex((item) => routeName === item.state.routeName);
-                let targetNavigation = this.topLevelNavigator.props.navigation.state.routes[index+1]; //a,b,c,d 由d->b, 需要拿到c的key, 再去执行goBack(key)
-                let key = targetNavigation.key;
-                this.topLevelNavigator.props.navigation.goBack(key);
+                let index = this.topLevelNavigator._navigation.state.routes.findIndex((item) => routeName === item.routeName);
+                let key = this.topLevelNavigator._navigation.state.routes[index + 1].key;//a,b,c,d 由d->b, 需要拿到c的key, 再去执行goBack(key)
+                this.topLevelNavigator._navigation.goBack(key);
             } else {
                 let index = this.navigationArr.findIndex((item) => routeName === item.state.routeName);
-                let tagetNavigation = this.navigationArr[index+1]; //a,b,c,d 由d->b, 需要拿到c的key, 再去执行goBack(key)
+                let tagetNavigation = this.navigationArr[index + 1]; //a,b,c,d 由d->b, 需要拿到c的key, 再去执行goBack(key)
                 let key = tagetNavigation.state.key;
                 this.navigation.goBack(key)
             }
         } else {
             if (useTopLevelNavigator) {
-                this.topLevelNavigator.props.navigation.pop();
+                this.topLevelNavigator._navigation.goBack();
             } else {
                 this.navigation.goBack();
             }
@@ -121,9 +120,9 @@ export default class RouteManager {
      * 返回上一级路由页面
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static pop(useTopLevelNavigator = false) {
+    static pop(useTopLevelNavigator = true) {
         if (useTopLevelNavigator) {
-            this.topLevelNavigator.props.navigation.pop();
+            this.topLevelNavigator._navigation.pop();
         } else {
             this.navigation.pop();
         }
@@ -134,9 +133,9 @@ export default class RouteManager {
      * @param params 参数
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static popToTop(params, useTopLevelNavigator = false) {
+    static popToTop(params, useTopLevelNavigator = true) {
         if (useTopLevelNavigator) {
-            this.topLevelNavigator.props.navigation.popToTop(params);
+            this.topLevelNavigator._navigation.popToTop(params)
         } else {
             this.navigation.popToTop(params);
         }
@@ -148,9 +147,9 @@ export default class RouteManager {
      * @param params 参数
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static replace(routeName, params, useTopLevelNavigator = false) {
+    static replace(routeName, params, useTopLevelNavigator = true) {
         if (useTopLevelNavigator) {
-            this.navigation.replace(routeName, params);
+            this.navigation.replace(routeName, params)
         } else {
             this.navigation.replace(routeName, params);
         }
@@ -162,7 +161,7 @@ export default class RouteManager {
      * @param index  最顶层路由下标
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static reset(routes, index = 0, useTopLevelNavigator = false) {
+    static reset(routes, index = 0, useTopLevelNavigator = true) {
 
         let routesArr = [];
         for (let i = 0; i < routes.length; i++) {
@@ -172,7 +171,7 @@ export default class RouteManager {
         const resetAction = NavigationActions.reset({actions: routesArr, index: index});
 
         if (useTopLevelNavigator) {
-            this.topLevelNavigator.props.navigation.dispatch(resetAction);
+            this.topLevelNavigator.dispatch(resetAction)
         } else {
             this.navigation.dispatch(resetAction);
         }
