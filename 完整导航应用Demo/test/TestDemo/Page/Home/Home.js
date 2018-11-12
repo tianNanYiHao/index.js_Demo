@@ -20,7 +20,7 @@ import {
     TouchableOpacity,
     StyleSheet,
 } from 'react-native'
-import RouteManager from "../../Navigation/RouteManager";
+import RouteManager from "../../RouteManager/RouteManager";
 import BaseComponent from "../BaseComponent/BaseComponent";
 
 export default class Home extends BaseComponent {

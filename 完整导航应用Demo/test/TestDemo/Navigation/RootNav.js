@@ -14,19 +14,14 @@ import React, {Component} from 'react'
 import {StackNavigator} from 'react-navigation'
 
 import RouteConfigs from "./RouteConfigs";
+import StackNavigatorConfig from './StackNavigatorConfig'
+
 
 const RootNav = StackNavigator(
-
-    //路由配置
+    // 路由配置
     RouteConfigs,
-
-    //导航样式设置
-    {
-        initialRouteName: "LLunch",
-        navigationOptions:{
-            header:null,
-        }
-    }
+    // 导航器样式配置
+    StackNavigatorConfig,
 );
 
 export default RootNav

@@ -20,14 +20,17 @@ export default class RouteManager {
     /*当前路由栈对象列表*/
     static navigationArr = [];
 
-    /*顶级路由对象*/
-    static topLevelNavigator = null;
-
     /*重复点击的间隔时间*/
     static intervalTime = 500;
 
     /*上次点击的时间*/
     static lastActionTime = 0;
+
+    /*顶级路由对象*/
+    static topLevelNavigator = null;
+
+    /*是否使用顶级导航器模式*/
+    static useTopLevelNavigator = true;
 
 
     /**
@@ -71,7 +74,7 @@ export default class RouteManager {
      * @param delay 避免重复点击
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static push(routeName, params, delay = true, useTopLevelNavigator = true) {
+    static push(routeName, params, delay = true, useTopLevelNavigator = this.useTopLevelNavigator) {
         let nowTime = new Date().getTime();
         if ((nowTime - this.lastActionTime) <= this.intervalTime && delay) {
             console.log('短时间点击太过频繁');
@@ -94,7 +97,7 @@ export default class RouteManager {
      * @param routeName 路由名
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static goBack(routeName, useTopLevelNavigator = true) {
+    static goBack(routeName, useTopLevelNavigator = this.useTopLevelNavigator) {
         if (routeName) {
             if (useTopLevelNavigator) {
                 let index = this.topLevelNavigator._navigation.state.routes.findIndex((item) => routeName === item.routeName);
@@ -120,7 +123,7 @@ export default class RouteManager {
      * 返回上一级路由页面
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static pop(useTopLevelNavigator = true) {
+    static pop(useTopLevelNavigator = this.useTopLevelNavigator) {
         if (useTopLevelNavigator) {
             this.topLevelNavigator._navigation.pop();
         } else {
@@ -133,7 +136,7 @@ export default class RouteManager {
      * @param params 参数
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static popToTop(params, useTopLevelNavigator = true) {
+    static popToTop(params, useTopLevelNavigator = this.useTopLevelNavigator) {
         if (useTopLevelNavigator) {
             this.topLevelNavigator._navigation.popToTop(params)
         } else {
@@ -147,7 +150,7 @@ export default class RouteManager {
      * @param params 参数
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static replace(routeName, params, useTopLevelNavigator = true) {
+    static replace(routeName, params, useTopLevelNavigator = this.useTopLevelNavigator) {
         if (useTopLevelNavigator) {
             this.navigation.replace(routeName, params)
         } else {
@@ -161,7 +164,7 @@ export default class RouteManager {
      * @param index  最顶层路由下标
      * @param useTopLevelNavigator 是否以顶级导航器方式管理路由,默认为NO
      */
-    static reset(routes, index = 0, useTopLevelNavigator = true) {
+    static reset(routes, index = 0, useTopLevelNavigator = this.useTopLevelNavigator) {
 
         let routesArr = [];
         for (let i = 0; i < routes.length; i++) {

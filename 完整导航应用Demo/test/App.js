@@ -14,8 +14,7 @@ import {
 
 
 import RootNav from './TestDemo/Navigation/RootNav'
-import RouteManager from "./TestDemo/Navigation/RouteManager";
-
+import RouteManager from "./TestDemo/RouteManager/RouteManager";
 
 export default class App extends Component {
     render() {

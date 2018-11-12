@@ -19,7 +19,7 @@ import {
     Button,
     TouchableOpacity,
 } from 'react-native'
-import RouteManager from "../../Navigation/RouteManager";
+import RouteManager from "../../RouteManager/RouteManager";
 import BaseComponent from "../BaseComponent/BaseComponent";
 
 export default class TeasetSelect extends BaseComponent {

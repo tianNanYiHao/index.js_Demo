@@ -14,7 +14,7 @@ import React, {Component,PureComponent} from 'react'
 import {
     InteractionManager,
 } from 'react-native'
-import RouteManager from "./RouteManager";
+import RouteManager from "../RouteManager/RouteManager";
 import hoistNonReactStatics from 'hoist-non-react-statics'
 
 
