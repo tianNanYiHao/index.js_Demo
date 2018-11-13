@@ -32,21 +32,21 @@ import {
 } from 'react-native'
 import BaseComponent from "../BaseComponent/BaseComponent";
 
+import {NavigationBar} from 'teaset'
 export default class Lunch extends BaseComponent {
 
 
     render() {
         return (
-            <View style={{flex:1}}>
 
-                {this.renderNoLeftItemNaivgationBar('Lunch页面')}
+            <View>
+            {this.renderNoLeftItemNaivgationBar('Lunch页面')}
                 <View style={{
                     flexDirection: 'row',
                     backgroundColor: '#ffeeff',
                     paddingHorizontal: 15,
                     paddingVertical: 25,
                     flexWrap: 'wrap',
-                    marginTop:64
                 }}>
                     <TouchableOpacity onPress={() => this.action(1)}>
                         <Text style={styles.text}>{'Replace路由:GoHome'}</Text>

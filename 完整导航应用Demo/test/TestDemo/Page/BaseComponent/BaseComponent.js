@@ -32,10 +32,7 @@ import {
     StyleSheet,
 } from 'react-native'
 import RouteManager from "../../RouteManager/RouteManager";
-
 import {NavigationBar} from 'teaset'
-import TestDemo from "../asyncAwaitPromise/TestDemo";
-
 export default class BaseComponent extends Component {
 
 
@@ -46,15 +43,15 @@ export default class BaseComponent extends Component {
      * @param hideLine 是否隐藏底部线
      * @returns {*}
      */
-    renderNomalNavigationBar(title = '标题', bgColor='#ff90db', hideLine=true) {
+    renderNomalNavigationBar(title = '标题', bgColor = '#ff90db', hideLine = true) {
         return <NavigationBar
-            type={'ios'}
-            title={title}
-            style={{backgroundColor:bgColor}}
-            leftView={this.createNavLeftItem()}
-            rightView={this.createNavRightItem()}
-            hiddenLine={hideLine}
-        />
+                type={'ios'}
+                title={title}
+                style={{backgroundColor: bgColor, position:'relative'}}
+                leftView={this.createNavLeftItem()}
+                rightView={this.createNavRightItem()}
+                hiddenLine={hideLine}
+            />
     }
 
     /**
@@ -64,16 +61,14 @@ export default class BaseComponent extends Component {
      * @param hideLine
      * @returns {*}
      */
-    renderNoLeftItemNaivgationBar(title='标题',bgColor='#ff90db',hideLine=true){
+    renderNoLeftItemNaivgationBar(title = '标题', bgColor = '#ff90db', hideLine = true) {
         return <NavigationBar
-            type={'ios'}
-            title={title}
-            style={{backgroundColor:bgColor}}
-            hiddenLine={hideLine}
-        />
+                type={'ios'}
+                title={title}
+                style={{backgroundColor: bgColor, position:'relative'}}
+                hiddenLine={hideLine}
+            />
     }
-
-
 
 
     /*创建导航左边视图*/
@@ -121,5 +116,4 @@ export default class BaseComponent extends Component {
 
 
 }
-
 
