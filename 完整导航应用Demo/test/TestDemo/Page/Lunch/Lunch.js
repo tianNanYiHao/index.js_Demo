@@ -33,14 +33,40 @@ import {
 import BaseComponent from "../BaseComponent/BaseComponent";
 
 import {NavigationBar} from 'teaset'
+
 export default class Lunch extends BaseComponent {
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0,
+        };
+    }
+
+    componentDidMount() {
+
+        let count = 5;
+        for (let i = 0; i <= count; i++) {
+
+            setTimeout(() => {
+                this.setState({
+                    count: i
+                });
+                if (i === count) {
+                    this.replace('LHome');
+                }
+            }, i * 1000)
+        }
+
+    }
 
 
     render() {
         return (
 
             <View>
-            {this.renderNoLeftItemNaivgationBar('Lunch页面')}
+                {this.renderNoLeftItemNaivgationBar('Lunch页面')}
                 <View style={{
                     flexDirection: 'row',
                     backgroundColor: '#ffeeff',
@@ -48,6 +74,7 @@ export default class Lunch extends BaseComponent {
                     paddingVertical: 25,
                     flexWrap: 'wrap',
                 }}>
+                    <Text>{this.state.count}</Text>
                     <TouchableOpacity onPress={() => this.action(1)}>
                         <Text style={styles.text}>{'Replace路由:GoHome'}</Text>
                     </TouchableOpacity>
@@ -62,7 +89,7 @@ export default class Lunch extends BaseComponent {
 
     action(tag) {
         if (tag === 1) {
-            this.replace('LHome');
+
         }
     }
 

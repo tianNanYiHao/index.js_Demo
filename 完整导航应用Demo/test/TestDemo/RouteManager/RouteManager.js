@@ -180,3 +180,6 @@ export default class RouteManager {
         }
     }
 }
+
+// 全局化
+global.RouteManager = RouteManager;

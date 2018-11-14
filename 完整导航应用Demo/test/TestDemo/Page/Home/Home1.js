@@ -24,7 +24,6 @@ import BaseComponent from "../BaseComponent/BaseComponent";
 
 export default class Home1 extends BaseComponent {
 
-
     render() {
         return (
 

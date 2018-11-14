@@ -52,6 +52,7 @@ export const AddRouteManagerToComponent = (OldComponent) => {
         render() {
             return (
                 <OldComponent
+
                     ref={v => this.oldComponent = v}
                     {...this.props}
                     {...this.props.navigation.state.params}
