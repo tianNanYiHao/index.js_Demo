@@ -46,7 +46,7 @@ export default class Lunch extends BaseComponent {
 
     componentDidMount() {
 
-        let count = 5;
+        let count = 1;
         for (let i = 0; i <= count; i++) {
 
             setTimeout(() => {

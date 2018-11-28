@@ -20,6 +20,9 @@ import {
     LHome5,
     LTestDemo,
     LTeasetSelect,
+    LFetchTest,
+    LAnimatedDemo,
+    LFlatListDemo
 
 } from '../Page';
 
@@ -43,6 +46,12 @@ const RouteConfigs = {
         LHome5: {screen: LHome5},
         LTestDemo: {screen: LTestDemo},
         LTeasetSelect: {screen: LTeasetSelect},
+        LFetchTest:{screen:LFetchTest},
+        LAnimatedDemo:{screen:LAnimatedDemo},
+        LFlatListDemo:{screen:LFlatListDemo},
+
+
+
     })
 };
 export default RouteConfigs
