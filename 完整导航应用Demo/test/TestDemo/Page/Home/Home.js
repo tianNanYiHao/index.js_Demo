@@ -41,6 +41,7 @@ export default class Home extends BaseComponent {
               {title:'FetchDemo'},
               {title:'AnimatedDemo'},
               {title:'FlatlistDemo'},
+              {title:'ScrollViewDemo'},
           ]
       };
     }
@@ -88,6 +89,10 @@ export default class Home extends BaseComponent {
         }
         if (tag === 5) {
             this.push('LFlatListDemo')
+        }
+
+        if (tag === 6) {
+            this.push('LScrollViewDemo')
         }
     }
 

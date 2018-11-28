@@ -17,7 +17,7 @@ import {Dimensions} from 'react-native'
 const defaultHeight = 667;
 const defaultWidth = 375;
 const height = Dimensions.get('window').height;
-const width = Dimensions.get('window').widget;
+const width = Dimensions.get('window').width;
 
 const fixHeight = (h) => {
     return h * (height / defaultHeight);

@@ -15,6 +15,7 @@ import LTeasetSelect from './TeasetSelect/TeasetSelect'
 import LFetchTest from './FetchDemo/FetchTest'
 import LAnimatedDemo from './AnimationDemo/AnimatedDemo'
 import LFlatListDemo from './FlatListDemo/FlatListDemo'
+import LScrollViewDemo from './ScrollViewDemo/ScrollViewDemo'
 
 import LHome from './Home/Home'
 import LHome1 from './Home/Home1'
@@ -40,5 +41,6 @@ module.exports={
     LFetchTest,
     LAnimatedDemo,
     LFlatListDemo,
+    LScrollViewDemo,
 
 }

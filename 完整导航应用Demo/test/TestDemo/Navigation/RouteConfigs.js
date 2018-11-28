@@ -22,7 +22,8 @@ import {
     LTeasetSelect,
     LFetchTest,
     LAnimatedDemo,
-    LFlatListDemo
+    LFlatListDemo,
+    LScrollViewDemo,
 
 } from '../Page';
 
@@ -49,6 +50,7 @@ const RouteConfigs = {
         LFetchTest:{screen:LFetchTest},
         LAnimatedDemo:{screen:LAnimatedDemo},
         LFlatListDemo:{screen:LFlatListDemo},
+        LScrollViewDemo:{screen:LScrollViewDemo},
 
 
 
