@@ -28,6 +28,7 @@ import Dimensions from 'Dimensions'
 import BaseComponent from "../BaseComponent/BaseComponent";
 import {LFlatListDemo} from "../index";
 import pxdp from "../../Common/pxdp";
+import Person from "./Person";
 
 export default class ScrollViewDemo extends BaseComponent {
 
@@ -52,12 +53,19 @@ export default class ScrollViewDemo extends BaseComponent {
             <View style={styles.container}>
                 {this.renderNoLeftItemNaivgationBar('ScrollViewDemo页面')}
                 <View style={{width: pxdp.width, height: pxdp.fixHeight(500), backgroundColor: '#ffa'}}>
+
+
+
+
                     <TouchableOpacity onPress={()=>this.changeScrollViewOffset()}>
                         <View style={{width: pxdp.width / 2, height: pxdp.fixHeight(50), backgroundColor: '#fff'}}/>
                     </TouchableOpacity>
                     <ScrollView ref={'aaabbcc'}>
                         {this.addItem()}
                     </ScrollView>
+                    <TouchableOpacity onPress={()=>this.PersonDemo()}>
+                        <View style={{width: pxdp.width, height: pxdp.fixHeight(50), backgroundColor: '#ff8ee2'}}/>
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -66,6 +74,13 @@ export default class ScrollViewDemo extends BaseComponent {
 
 
     /**************************************** 逻辑处理 ****************************************/
+
+
+    PersonDemo(){
+
+        let p = new Person();
+        p.sayHey()
+    }
 
     addItem() {
 
