@@ -42,6 +42,7 @@ export default class Home extends BaseComponent {
               {title:'AnimatedDemo'},
               {title:'FlatlistDemo'},
               {title:'ScrollViewDemo'},
+              {title:'LRenderTest'},
           ]
       };
     }
@@ -90,9 +91,11 @@ export default class Home extends BaseComponent {
         if (tag === 5) {
             this.push('LFlatListDemo')
         }
-
         if (tag === 6) {
             this.push('LScrollViewDemo')
+        }
+        if (tag === 7) {
+            this.push('LRenderTest')
         }
     }
 

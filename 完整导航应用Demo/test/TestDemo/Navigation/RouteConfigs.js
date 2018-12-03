@@ -24,6 +24,7 @@ import {
     LAnimatedDemo,
     LFlatListDemo,
     LScrollViewDemo,
+    LRenderTest,
 
 } from '../Page';
 
@@ -51,6 +52,7 @@ const RouteConfigs = {
         LAnimatedDemo:{screen:LAnimatedDemo},
         LFlatListDemo:{screen:LFlatListDemo},
         LScrollViewDemo:{screen:LScrollViewDemo},
+        LRenderTest:{screen:LRenderTest},
 
 
 

@@ -78,9 +78,11 @@ export default class ScrollViewDemo extends BaseComponent {
 
     PersonDemo(){
 
-        let p = new Person();
+        let p = new Person('xiaoming',19);
         p.sayHey()
     }
+
+
 
     addItem() {
 

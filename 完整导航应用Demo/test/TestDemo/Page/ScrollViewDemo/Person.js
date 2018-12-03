@@ -10,11 +10,11 @@
  */
 
 
-function Person(name,age,sayHey){
+function Person(name,age){
     this.name = name;
     this.age = age;
     this.sayHey = ()=>{
-        console.sh(this.name);
+        console.warn(this.name)
     }
 }
 
