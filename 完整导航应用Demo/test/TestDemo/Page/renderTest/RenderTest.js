@@ -25,7 +25,8 @@ export default class RenderTest extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: 'abc'
+            title: 'abc',
+            state2: ''
         };
         console.log(`构造函数中:=====>${this.state.title}`);
     }
@@ -33,6 +34,14 @@ export default class RenderTest extends Component {
 
     componentWillMount() {
         console.log(`componentWillMount中:=====>${this.state.title}`);
+    }
+
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextState.title === 'fff') {
+            return true
+        }
+        return true
     }
 
 
@@ -50,6 +59,7 @@ export default class RenderTest extends Component {
 
     render() {
         console.log(`render中:=====>${this.state.title}`);
+        console.log(`render中:=====>${this.state.state2}`);
         return (
             <TouchableOpacity onPress={() => this.touchTitle()}>
                 <View style={{
@@ -61,6 +71,7 @@ export default class RenderTest extends Component {
                 }}>
                     <Text>测试本页,需debug查看console.log()</Text>
                     <Text style={{fontSize: 20, color: '#09ccff'}}>{this.state.title}</Text>
+                    <Text style={{fontSize: 20, color: '#fdea99'}}>{this.state.state2}</Text>
                 </View>
             </TouchableOpacity>
         )
@@ -68,10 +79,19 @@ export default class RenderTest extends Component {
 
     touchTitle = () => {
         console.log(`触发setState前:=====>${this.state.title}`);
+        console.log(`触发setState前:=====>${this.state.state2}`);
         this.setState({
             title: 'fff'
         })
+
+        setTimeout(() => {
+            this.setState({
+                state2: 'ssss'
+            })
+        },300)
+
         console.log(`触发方法setState后:=====>${this.state.title}`);
+        console.log(`触发方法setState后:=====>${this.state.state2}`);
     }
 
 
