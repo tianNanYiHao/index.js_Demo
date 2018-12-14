@@ -33,8 +33,8 @@ import {
 } from 'react-native'
 import BaseComponent from "../BaseComponent/BaseComponent";
 import pxdp from "../../Common/pxdp";
-import HalfTransparentView from "../../Component/HalfTransparentView";
-import HalfPage from "../../Component/HalfPage";
+import HalfTransparentView from "../../Component/HalfPage/HalfTransparentView";
+import HalfPage from "../../Component/HalfPage/HalfPage";
 
 export default class Animation1 extends BaseComponent {
 
@@ -56,20 +56,32 @@ export default class Animation1 extends BaseComponent {
                 {this.renderNomalNavigationBar('动画1')}
                 <TouchableOpacity
                     style={{height: pxdp.fixHeight(100), width: pxdp.fixHeight(100), backgroundColor: '#090'}}
-                    onPress={() => this.touchShow()}/>
+                    onPress={() => this.touchShow(1)}/>
+                <TouchableOpacity
+                    style={{height: pxdp.fixHeight(100), width: pxdp.fixHeight(100), backgroundColor: '#dcaaef'}}
+                    onPress={() => this.touchShow(2)}/>
                 {this.renderHalfPage()}
             </View>
         )
     }
 
 
-    touchShow() {
-
-
+    touchShow(e) {
+        if (e === 1) {
+            this.halfBase.show();
+            this.half.show()
+        }
+        if (e === 2) {
+            this.halfBase.hide();
+            this.half.hide()
+        }
     }
 
     renderHalfPage() {
-        return <HalfPage type={HalfPage.HalfPageType.halfPageMsg}/>
+        return <HalfTransparentView ref={ref1 => this.halfBase = ref1} canHide={true}
+                                    containerView={<HalfPage ref={ref2 => this.half = ref2}
+                                                             type={HalfPage.HalfPageType.halfDefault}/>}/>
+
     }
 
 }

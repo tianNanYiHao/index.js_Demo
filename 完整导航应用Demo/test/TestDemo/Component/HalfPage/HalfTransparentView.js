@@ -22,8 +22,8 @@ import {
 } from 'react-native'
 
 import PropTypes from 'prop-types'
-import App from "../../App";
-import pxdp from "../Common/pxdp";
+import App from "../../../App";
+import pxdp from "../../Common/pxdp";
 
 class HalfTransparentView extends Component {
 
