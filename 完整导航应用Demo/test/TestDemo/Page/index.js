@@ -14,9 +14,16 @@ import LTestDemo from './asyncAwaitPromise/TestDemo'
 import LTeasetSelect from './TeasetSelect/TeasetSelect'
 import LFetchTest from './FetchDemo/FetchTest'
 import LAnimatedDemo from './AnimationDemo/AnimatedDemo'
+import LAnimation1 from './AnimationDemo/Animation1'
+import LAnimation2 from './AnimationDemo/Animation2'
+import LAnimation3 from './AnimationDemo/Animation3'
+import LAnimation4 from './AnimationDemo/Animation4'
+import LAnimation5 from './AnimationDemo/Animation5'
 import LFlatListDemo from './FlatListDemo/FlatListDemo'
 import LScrollViewDemo from './ScrollViewDemo/ScrollViewDemo'
 import LRenderTest from './renderTest/RenderTest'
+import LResponderDemo from './ResponderDemo/ResponderDemo'
+import LChooseCellIndex from './ResponderDemo/ChooseCellIndex'
 
 
 import LHome from './Home/Home'
@@ -45,5 +52,14 @@ module.exports={
     LFlatListDemo,
     LScrollViewDemo,
     LRenderTest,
+    LAnimation1,
+    LAnimation2,
+    LAnimation3,
+    LAnimation4,
+    LAnimation5,
+    LResponderDemo,
+    LChooseCellIndex,
+
+
 
 }

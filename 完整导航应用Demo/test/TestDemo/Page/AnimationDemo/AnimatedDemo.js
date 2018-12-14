@@ -19,7 +19,7 @@
  *
  */
 
-import React, {Component} from 'react'
+import React, {Component,PureComponent} from 'react'
 import {
     Text,
     Platform,
@@ -32,6 +32,7 @@ import {
     Animated,
 } from 'react-native'
 import BaseComponent from "../BaseComponent/BaseComponent";
+import pxdp from "../../Common/pxdp";
 
 export default class AnimatedDemo extends BaseComponent {
 
@@ -39,12 +40,16 @@ export default class AnimatedDemo extends BaseComponent {
     constructor(props) {
         super(props);
 
-        this.showHiddenFlag = true;
-        this.currentAlpha = 1;
+        this.infoArr = [
+            "动画一",
+            "动画二",
+            "动画三",
+            "动画四",
+            "动画五",
+        ]
 
         this.state = {
-            fadeAnimin: new Animated.Value(1),
-            fadeAnimated: new Animated.Value(1),
+
         };
     }
 
@@ -59,74 +64,26 @@ export default class AnimatedDemo extends BaseComponent {
 
         return (
             <View style={{flex: 1}}>
-
-                {/***************** 动画一 *****************/}
-                <View style={{flex: 1 / 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#cc1'}}>
-                    <Animated.View
-                        style={{backgroundColor: 'red', width: 100, height: 100, opacity: this.state.fadeAnimin}}
-                    />
-                    <TouchableOpacity style={{backgroundColor: '#0feedd', height: 40, width: 200}}
-                                      onPress={() => this.showHidden(1)}/>
-                </View>
-
-                {/***************** 动画二 *****************/}
-                <View style={{flex: 1 / 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#d41'}}>
-                    <Animated.View
-                        style={{
-                            backgroundColor: '#B4A6DD',
-                            width: 100,
-                            height: 100,
-                            opacity: this.state.fadeAnimin,  // 透明动画
-                            transform: [
-                                {
-                                    translateY: this.state.fadeAnimated.interpolate({  //位移动画
-                                        inputRange: [0, 1],
-                                        outputRange: [80, 0]
-                                    })
-                                },
-                                {
-                                    scale: this.state.fadeAnimated  // 比例动画
-                                }
-                            ],
-                        }}/>
-                    <TouchableOpacity style={{backgroundColor: '#0feedd', height: 40, width: 200}}
-                                      onPress={() => this.showHidden(2)}/>
-
-                    {/***************** 动画三 *****************/}
-                </View>
+                {this.renderNomalNavigationBar('动画页面')}
+                {this.createCellWithArr()}
             </View>
         )
-
     }
 
     /**************************************** 逻辑处理 ****************************************/
-
-    showHidden(tag) {
-        if (tag === 1) {
-            this.showHiddenFlag = !this.showHiddenFlag;
-            if (this.showHiddenFlag) {
-                Animated.timing(
-                    this.state.fadeAnimin,
-                    {toValue: 1}
-                ).start();
-            }
-            else {
-                Animated.timing(
-                    this.state.fadeAnimin,
-                    {toValue: 0}
-                ).start();
-            }
-        }
-        if (tag === 2) {
-
-            this.currentAlpha = this.currentAlpha === 1 ? 0 : 1;
-            Animated.timing(
-                this.state.fadeAnimated,
-                {toValue: this.currentAlpha}
-            ).start();
-        }
+    createCellWithArr(){
+        let arr= [];
+        this.infoArr.forEach((item,index)=>{
+            arr.push(
+                <Cell key={index} index={index} title={item} action={(seletedIndex)=>this.action(seletedIndex)}></Cell>
+            )
+        })
+        return arr;
     }
 
+    action(seletedIndex){
+        this.push(`LAnimation${seletedIndex+1}`);
+    }
 
 }
 
@@ -141,3 +98,25 @@ const styles = StyleSheet.create({
 
     }
 })
+
+
+/**************************************** 自定义cell ****************************************/
+class Cell extends React.PureComponent{
+
+    render(){
+        return (
+            <TouchableOpacity onPress={()=>this.cellTouch()}>
+                <View style={{width:pxdp.width,height:pxdp.fixHeight(50), justifyContent:'center', borderWidth:1,
+                    borderColor:'#00f', borderRadius:10,
+                }}>
+                    <Text>{this.props.title}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+    cellTouch(){
+        this.props.action(this.props.index)
+    }
+
+}
+

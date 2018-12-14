@@ -38,14 +38,14 @@ export default class Home1 extends BaseComponent {
                     <TouchableOpacity onPress={() => this.action(1)}>
                         <Text style={styles.text}>{'Push:Home2'}</Text>
                     </TouchableOpacity>
-
                 </View>
 
             </View>
 
-
         )
     }
+
+
 
     action(tag) {
         if (tag === 1) {

@@ -25,6 +25,14 @@ import {
     LFlatListDemo,
     LScrollViewDemo,
     LRenderTest,
+    LAnimation1,
+    LAnimation2,
+    LAnimation3,
+    LAnimation4,
+    LAnimation5,
+    LResponderDemo,
+    LChooseCellIndex,
+
 
 } from '../Page';
 
@@ -53,6 +61,13 @@ const RouteConfigs = {
         LFlatListDemo:{screen:LFlatListDemo},
         LScrollViewDemo:{screen:LScrollViewDemo},
         LRenderTest:{screen:LRenderTest},
+        LAnimation1:{screen:LAnimation1},
+        LAnimation2:{screen:LAnimation2},
+        LAnimation3:{screen:LAnimation3},
+        LAnimation4:{screen:LAnimation4},
+        LAnimation5:{screen:LAnimation5},
+        LResponderDemo:{screen:LResponderDemo},
+        LChooseCellIndex:{screen:LChooseCellIndex},
 
 
 

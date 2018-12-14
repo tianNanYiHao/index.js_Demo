@@ -60,9 +60,11 @@ export default class ScrollViewDemo extends BaseComponent {
                     <TouchableOpacity onPress={()=>this.changeScrollViewOffset()}>
                         <View style={{width: pxdp.width / 2, height: pxdp.fixHeight(50), backgroundColor: '#fff'}}/>
                     </TouchableOpacity>
+
                     <ScrollView ref={'aaabbcc'}>
                         {this.addItem()}
                     </ScrollView>
+
                     <TouchableOpacity onPress={()=>this.PersonDemo()}>
                         <View style={{width: pxdp.width, height: pxdp.fixHeight(50), backgroundColor: '#ff8ee2'}}/>
                     </TouchableOpacity>

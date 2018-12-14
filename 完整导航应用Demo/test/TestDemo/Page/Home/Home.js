@@ -26,6 +26,7 @@ import PropsTyps from 'prop-types'
 import Dimensions from 'Dimensions'
 import BaseComponent from "../BaseComponent/BaseComponent";
 import {LFlatListDemo} from "../index";
+import LResponderDemo from "../ResponderDemo/ResponderDemo";
 
 export default class Home extends BaseComponent {
 
@@ -43,6 +44,7 @@ export default class Home extends BaseComponent {
               {title:'FlatlistDemo'},
               {title:'ScrollViewDemo'},
               {title:'LRenderTest'},
+              {title:'LResponderDemo'},
           ]
       };
     }
@@ -96,6 +98,9 @@ export default class Home extends BaseComponent {
         }
         if (tag === 7) {
             this.push('LRenderTest')
+        }
+        if (tag === 8) {
+            this.push('LResponderDemo');
         }
     }
 
