@@ -1,11 +1,11 @@
 /**
  *
  * @Author:   tiannanyihao
- * @Date:     2018-12-13 17:35
+ * @Date:     2018-12-14 17:50
  * @Profile:  HalfPage
  * @Project:  test
 
- * @Description:
+ * @Description: 按业务需求不同,将半透明背景及半页组件组合后,提供的完整组件及业务Api
  *
  */
 
@@ -19,22 +19,20 @@ import {
     Easing,
     Animated,
     StyleSheet
-
 } from 'react-native'
 
-
 import PropTypes from 'prop-types'
-import pxdp from "../../Common/pxdp";
-
+import HalfTransparent from "./HalfTransparent";
+import HalfPagePaylist from "./HalfPagePaylist";
+import HalfPagePwd from "./HalfPagePwd";
+import HalfPageMsg from "./HalfPageMsg";
 
 class HalfPage extends Component {
 
     /* 模拟枚举:指定半页视图的类型*/
-    static HalfPageType = {
-        // 默认半页
-        halfDefault: -1,
+    static Type = {
         // 支付列表半页,
-        halfPagePayList: 0,
+        halfPagePaylist: 0,
         // 短信半页,
         halfPageMsg: 1,
         // 支付密码半页,
@@ -42,132 +40,102 @@ class HalfPage extends Component {
     };
 
     /**************************************** 初始构造 ****************************************/
+
     static propTypes = {
-        type: PropTypes.number
-    };
+        type: PropTypes.number,
+    }
 
     constructor(props) {
         super(props);
-        this.defaultHalfPageHeight = pxdp.fixHeight(376); //默认半页的高度
-        this.state = {
-            halfPageLeft: new Animated.Value(0), //半页左侧初始距离
-            halfPageRight: new Animated.Value(0),//半页右侧初始距离
-            halfPageTop: new Animated.Value(0), //半页顶侧初始距离
-            halfPageBottom: new Animated.Value(0), //半页底侧初始距离
-            halfPageHeight: new Animated.Value(0), //半页高度,
-        }
+        this.state = {};
     }
 
     /**************************************** 渲染 ****************************************/
-
     render() {
         switch (this.props.type) {
-            case HalfPage.HalfPageType.halfPagePayList:
-                return this._renderhalfPagePayList();
+            case HalfPage.Type.halfPagePaylist:
+                return this._halfPagePaylist();
                 break;
-
-            case HalfPage.HalfPageType.halfPageMsg:
-                return this._renderhalfPageMsg();
+            case HalfPage.Type.halfPageMsg:
+                return this._halfPageMsg();
                 break;
-
-            case HalfPage.HalfPageType.halfPagePaypwd:
-                return this._renderhalfPagePaypwd();
+            case HalfPage.Type.halfPagePaypwd:
+                return this._halfPagePaypwd();
                 break;
-
             default:
-                return this._renderDefault(-1);
+                return null;
+                break;
+
         }
-
-    }
-
-    /***************** 默认半页 *****************/
-    _renderDefault() {
-        return (
-            <Animated.View style={[styleDefault.container, {
-                height: this.state.halfPageHeight.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0, this.defaultHalfPageHeight]
-                })
-            }]}/>
-        )
-    }
-
-    /***************** 支付列表半页 *****************/
-    _renderhalfPagePayList() {
-
-    }
-
-    /***************** 支付短信半页 *****************/
-    _renderhalfPageMsg() {
-
-    }
-
-    /***************** 支付密码半页 *****************/
-    _renderhalfPagePaypwd() {
-
     }
 
 
-    /**************************************** 逻辑调用 ****************************************/
+    _halfPagePaylist() {
+        return <HalfTransparent ref={ref => this.halfTransparentView = ref} canHide={true} containerView={
+            <HalfPagePaylist ref={ref => this.halfpageView = ref}/>
+        } cancelIdleCallback={() => this.hide()}/>
+    }
 
-    /**************************************** 外部方法 ****************************************/
+    _halfPageMsg() {
+        return <HalfTransparent ref={ref => this.halfTransparentView = ref} canHide={true} containerView={
+            <HalfPageMsg ref={ref => this.halfpageView = ref}/>
+        } cancelIdleCallback={() => this.hide()}/>
+    }
+
+    _halfPagePaypwd() {
+        return <HalfTransparent ref={ref => this.halfTransparentView = ref} canHide={true} containerView={
+            <HalfPagePwd ref={ref => this.halfpageView = ref}/>
+        } cancelIdleCallback={() => this.hide()}/>
+    }
+
+    /**************************************** 对外方法 ****************************************/
+
+    /*显示*/
     show() {
-        if (this.props.type === HalfPage.HalfPageType.halfDefault) {
-            Animated.timing(this.state.halfPageHeight, {
-                toValue: 1,
-                duration: 500,
-                easing: Easing.bezier(0.07,0.27,0,0.97)
-            }).start()
+        if (HalfPage.Type.halfPagePaylist === this.props.type) {
+            Animated.parallel([
+                ...this.halfTransparentView.getShowAnimated(),
+                this.halfpageView.getShowAnimated()
+            ]).start()
         }
-        if (this.props.type === HalfPage.HalfPageType.halfPagePayList) {
-
+        if (HalfPage.Type.halfPageMsg === this.props.type) {
+            Animated.parallel([
+                ...this.halfTransparentView.getShowAnimated(),
+                this.halfpageView.getShowAnimated()
+            ]).start()
         }
-        if (this.props.type === HalfPage.HalfPageType.halfPageMsg) {
-
-        }
-        if (this.props.type === HalfPage.HalfPageType.halfPagePaypwd) {
-
+        if (HalfPage.Type.halfPagePaypwd === this.props.type) {
+            Animated.parallel([
+                ...this.halfTransparentView.getShowAnimated(),
+                this.halfpageView.getShowAnimated()
+            ]).start()
         }
     }
 
+    /*隐藏*/
     hide() {
-        if (this.props.type === HalfPage.HalfPageType.halfDefault) {
-            Animated.timing(this.state.halfPageHeight, {
-                toValue: 0,
-                duration: 500,
-                easing: Easing.bezier(0.44,0.07,0.87,0.34)
-            }).start()
+        if (HalfPage.Type.halfPagePaylist === this.props.type) {
+            Animated.parallel([
+                Animated.sequence(this.halfTransparentView.getHideAnimated()),
+                this.halfpageView.getHideAnimated()
+            ]).start()
         }
-        if (this.props.type === HalfPage.HalfPageType.halfPagePayList) {
+        if (HalfPage.Type.halfPageMsg === this.props.type) {
+            Animated.parallel([
+                Animated.sequence(this.halfTransparentView.getHideAnimated()),
+                this.halfpageView.getHideAnimated()
+            ]).start()
+        }
+        if (HalfPage.Type.halfPagePaypwd === this.props.type) {
+            Animated.parallel([
+                Animated.sequence(this.halfTransparentView.getHideAnimated()),
+                this.halfpageView.getHideAnimated()
+            ]).start()
+        }
 
-        }
-        if (this.props.type === HalfPage.HalfPageType.halfPageMsg) {
-
-        }
-        if (this.props.type === HalfPage.HalfPageType.halfPagePaypwd) {
-
-        }
     }
 
 }
 
-/***************** 默认半页样式 *****************/
-const styleDefault = StyleSheet.create({
-    container: {
-        width: pxdp.width,
-        backgroundColor: '#0cdfea',
-        position: 'absolute',
-        bottom: 0,
-    }
-});
 
-/***************** 支付列表样式 *****************/
-const stylePayList = StyleSheet.create({});
-
-/***************** 短信半页样式 *****************/
-const stylePayMsg = StyleSheet.create({});
-
-/***************** 密码半页样式 *****************/
-const stylePaypwd = StyleSheet.create({});
-
-export default HalfPage;
+export default HalfPage

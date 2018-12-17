@@ -33,7 +33,6 @@ import {
 } from 'react-native'
 import BaseComponent from "../BaseComponent/BaseComponent";
 import pxdp from "../../Common/pxdp";
-import HalfTransparentView from "../../Component/HalfPage/HalfTransparentView";
 import HalfPage from "../../Component/HalfPage/HalfPage";
 
 export default class Animation1 extends BaseComponent {
@@ -53,13 +52,14 @@ export default class Animation1 extends BaseComponent {
 
         return (
             <View style={{flex: 1}}>
-                {this.renderNomalNavigationBar('动画1')}
+                {this.renderNomalNavigationBar('支付列表/短信/密码/动画')}
                 <TouchableOpacity
                     style={{height: pxdp.fixHeight(100), width: pxdp.fixHeight(100), backgroundColor: '#090'}}
                     onPress={() => this.touchShow(1)}/>
                 <TouchableOpacity
                     style={{height: pxdp.fixHeight(100), width: pxdp.fixHeight(100), backgroundColor: '#dcaaef'}}
                     onPress={() => this.touchShow(2)}/>
+
                 {this.renderHalfPage()}
             </View>
         )
@@ -68,19 +68,12 @@ export default class Animation1 extends BaseComponent {
 
     touchShow(e) {
         if (e === 1) {
-            this.halfBase.show();
-            this.half.show()
-        }
-        if (e === 2) {
-            this.halfBase.hide();
-            this.half.hide()
+            this.halfPage.show()
         }
     }
 
     renderHalfPage() {
-        return <HalfTransparentView ref={ref1 => this.halfBase = ref1} canHide={true}
-                                    containerView={<HalfPage ref={ref2 => this.half = ref2}
-                                                             type={HalfPage.HalfPageType.halfDefault}/>}/>
+        return <HalfPage ref={ref => this.halfPage = ref} type={HalfPage.Type.halfPagePaypwd}/>
 
     }
 
