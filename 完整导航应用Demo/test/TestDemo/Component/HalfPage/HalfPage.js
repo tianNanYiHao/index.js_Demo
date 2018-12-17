@@ -55,33 +55,30 @@ class HalfPage extends Component {
         switch (this.props.type) {
             case HalfPage.Type.halfPagePaylist:
                 return this._halfPagePaylist();
-                break;
             case HalfPage.Type.halfPageMsg:
                 return this._halfPageMsg();
-                break;
             case HalfPage.Type.halfPagePaypwd:
                 return this._halfPagePaypwd();
-                break;
             default:
                 return null;
-                break;
-
         }
     }
 
-
+    /*单独支付列表*/
     _halfPagePaylist() {
         return <HalfTransparent ref={ref => this.halfTransparentView = ref} canHide={true} containerView={
             <HalfPagePaylist ref={ref => this.halfpageView = ref}/>
         } cancelIdleCallback={() => this.hide()}/>
     }
 
+    /*单独短信*/
     _halfPageMsg() {
         return <HalfTransparent ref={ref => this.halfTransparentView = ref} canHide={true} containerView={
             <HalfPageMsg ref={ref => this.halfpageView = ref}/>
         } cancelIdleCallback={() => this.hide()}/>
     }
 
+    /*单独密码*/
     _halfPagePaypwd() {
         return <HalfTransparent ref={ref => this.halfTransparentView = ref} canHide={true} containerView={
             <HalfPagePwd ref={ref => this.halfpageView = ref}/>

@@ -56,6 +56,7 @@ export default class Animation1 extends BaseComponent {
                 <TouchableOpacity
                     style={{height: pxdp.fixHeight(100), width: pxdp.fixHeight(100), backgroundColor: '#090'}}
                     onPress={() => this.touchShow(1)}/>
+
                 <TouchableOpacity
                     style={{height: pxdp.fixHeight(100), width: pxdp.fixHeight(100), backgroundColor: '#dcaaef'}}
                     onPress={() => this.touchShow(2)}/>
@@ -69,6 +70,8 @@ export default class Animation1 extends BaseComponent {
     touchShow(e) {
         if (e === 1) {
             this.halfPage.show()
+        }else {
+            this.halfPage.hide()
         }
     }
 
