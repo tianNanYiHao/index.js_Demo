@@ -31,8 +31,7 @@ export default class ChooseCellIndex extends BaseComponent {
     constructor(props) {
         super(props);
 
-        this.state = {
-        };
+        this.state = {};
     }
 
 
@@ -47,8 +46,9 @@ export default class ChooseCellIndex extends BaseComponent {
 
             <View style={{flex: 1}}>
                 {this.renderNomalNavigationBar('模拟切换顺序组件')}
-
-                {this.renderList()}
+                <View style={{backgroundColor:'#090'}}>
+                    {this.renderList()}
+                </View>
             </View>
         )
 
@@ -58,9 +58,9 @@ export default class ChooseCellIndex extends BaseComponent {
 
         let arr = ['aa', 'bb', 'cc'];
         let addArr = []
-        arr.forEach((item) => {
+        arr.forEach((item,index) => {
             addArr.push(
-                <ChooseList title={item}/>
+                <ChooseList key={index} title={item}/>
             )
         })
         return addArr

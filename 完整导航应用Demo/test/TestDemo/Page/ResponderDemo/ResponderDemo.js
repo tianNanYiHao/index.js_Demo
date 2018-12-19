@@ -121,17 +121,7 @@ export default class ResponderDemo extends BaseComponent {
                     left: this.state.marginLeft,
                     top: this.state.marginTop,
                 }} {...this.panResponder.panHandlers}
-                >
-                    <View style={{
-                        backgroundColor: '#090',
-                        width: 10,
-                        height: 10,
-                        marginLeft: this.state.ml,
-                        marginTop: this.state.mt
-                    }}/>
-                </View>
-
-
+                />
             </View>
 
 
@@ -141,26 +131,19 @@ export default class ResponderDemo extends BaseComponent {
 
     /**************************************** 逻辑处理 ****************************************/
     /*
-    * 备注: 拖动小圆点的实现方法
+    * 备注: 拖动小圆点的实现方法 - 使用绝对定位
     * 对小圆点设置绝对布局,
     * 通过触发开始的pageXY与moveXY的差值
     * 来变更top,left的大小,
     * position一定要为 absolute
     * */
 
-
     // 单点手势开始
     _onPanResponderGrant(e) {
-        this.setState({
-            isHeightShow: true,
-            ml: e.nativeEvent.locationX,
-            mt: e.nativeEvent.locationY,
-        })
-
 
         //1. 开始触发时,获取触摸点绝对位置
-        this.touchX = e.nativeEvent.pageX;
-        this.touchY = e.nativeEvent.pageY;
+        this.touchX = e.nativeEvent.locationX;
+        this.touchY = e.nativeEvent.locationY;
 
     }
 
