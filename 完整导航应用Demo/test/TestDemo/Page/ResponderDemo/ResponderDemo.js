@@ -28,8 +28,6 @@ import BaseComponent from "../BaseComponent/BaseComponent";
 import pxdp from "../../Common/pxdp";
 
 
-
-
 export default class ResponderDemo extends BaseComponent {
 
 
@@ -38,8 +36,10 @@ export default class ResponderDemo extends BaseComponent {
 
         this.state = {
             isHeightShow: false, //小圆点在触发手势后,是否变色响应
-            marginLeft: 0, //小圆点的左外边距
-            marginTop: 0,  //小圆点的顶外边距
+            marginLeft: 100, //小圆点的左外边距
+            marginTop: 100,  //小圆点的顶外边距
+            ml: 0,
+            mt: 0,
         };
     }
 
@@ -62,12 +62,12 @@ export default class ResponderDemo extends BaseComponent {
             // 单击手势监听回调
             onPanResponderGrant: (e, gestureState) => {
                 console.log('onPanResponderGrant==>' + '单击手势申请成功,开始处理手势')
-                this._onPanResponderGrant()
+                this._onPanResponderGrant(e)
             },
             // 移动手势监听回调
             onPanResponderMove: (e, gestureState) => {
                 console.log('onPanResponderMove==>' + '移动手势申请成功,开始处理手势' + `${gestureState}`)
-                this._onPanResponderMove(e);
+                this._onPanResponderMove(e, gestureState);
             },
             // 手势动作结束回调
             onPanResponderEnd: (evt, gestureState) => {
@@ -106,10 +106,10 @@ export default class ResponderDemo extends BaseComponent {
                 {this.renderNomalNavigationBar('触摸响应页')}
 
                 <TouchableOpacity
-                    onPress={()=>this.enterPenresnponderShow()}
-                    style={{backgroundColor:'#00ffee',width:pxdp.width,height:pxdp.fixHeight(50)}}
+                    onPress={() => this.enterPenresnponderShow()}
+                    style={{backgroundColor: '#00ffee', width: pxdp.width, height: pxdp.fixHeight(50)}}
                 />
-                <Animated.View style={{
+                <View style={{
                     backgroundColor: this.state.isHeightShow ? '#ffddff' : '#ff0fa0',
                     borderColor: '#ff0',
                     borderWidth: 1,
@@ -121,7 +121,15 @@ export default class ResponderDemo extends BaseComponent {
                     left: this.state.marginLeft,
                     top: this.state.marginTop,
                 }} {...this.panResponder.panHandlers}
-                />
+                >
+                    <View style={{
+                        backgroundColor: '#090',
+                        width: 10,
+                        height: 10,
+                        marginLeft: this.state.ml,
+                        marginTop: this.state.mt
+                    }}/>
+                </View>
 
 
             </View>
@@ -132,42 +140,73 @@ export default class ResponderDemo extends BaseComponent {
 
 
     /**************************************** 逻辑处理 ****************************************/
+    /*
+    * 备注: 拖动小圆点的实现方法
+    * 对小圆点设置绝对布局,
+    * 通过触发开始的pageXY与moveXY的差值
+    * 来变更top,left的大小,
+    * position一定要为 absolute
+    * */
+
+
     // 单点手势开始
-    _onPanResponderGrant() {
+    _onPanResponderGrant(e) {
         this.setState({
             isHeightShow: true,
+            ml: e.nativeEvent.locationX,
+            mt: e.nativeEvent.locationY,
         })
+
+
+        //1. 开始触发时,获取触摸点绝对位置
+        this.touchX = e.nativeEvent.pageX;
+        this.touchY = e.nativeEvent.pageY;
+
     }
 
     // 移动手势处理
-    _onPanResponderMove(evt) {
-        let pageX = evt.nativeEvent.pageX - pxdp.fixWidth(25);
-        let pageY = evt.nativeEvent.pageY - pxdp.fixWidth(25);
+    _onPanResponderMove(evt, g) {
+        console.log("        ");
+        console.log(evt.nativeEvent);
+        console.log('=================')
+        console.log(g);
+
+        //2. 根据触发点计算真实的左侧,顶侧位移变化
+        let realMarginLeft = g.moveX - this.touchX;
+        let realMarginTop = g.moveY - this.touchY;
+
         this.setState({
-            marginLeft: pageX,
-            marginTop: pageY,
+            marginLeft: realMarginLeft,
+            marginTop: realMarginTop
         })
+
+
     }
 
     // 手势结束
     _onPanResponderEnd(evt) {
-        let pageX = evt.nativeEvent.pageX - pxdp.fixWidth(25);
+        let pageX = evt.nativeEvent.pageX;
+
+        this.setState({
+            isHeightShow: false,
+        });
 
         if (pageX <= pxdp.width / 4) {
             pageX = 0;
+            this.setState({
+                marginLeft: pageX,
+            })
         }
         if (pageX >= pxdp.width * 3 / 4) {
             pageX = pxdp.width - pxdp.fixWidth(50);
+            this.setState({
+                marginLeft: pageX,
+            })
         }
-
-        this.setState({
-            marginLeft: pageX,
-            isHeightShow: false,
-        })
     }
 
 
-    enterPenresnponderShow(){
+    enterPenresnponderShow() {
         this.push('LChooseCellIndex')
     }
 

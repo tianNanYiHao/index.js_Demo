@@ -16,7 +16,8 @@ import {
     Image,
     Text,
     StyleSheet,
-    PanResponder
+    PanResponder,
+    Animated,
 
 } from 'react-native'
 import BaseComponent from "../BaseComponent/BaseComponent";
@@ -30,15 +31,13 @@ export default class ChooseCellIndex extends BaseComponent {
     constructor(props) {
         super(props);
 
-        this.data = [
-            {title: 'A'},
-            {title: 'B'},
-            {title: 'C'},
-            {title: 'D'},
-            {title: 'E'},
-        ];
+        this.state = {
+        };
+    }
 
-        this.state = {};
+
+    componentWillMount() {
+
     }
 
 
@@ -48,11 +47,26 @@ export default class ChooseCellIndex extends BaseComponent {
 
             <View style={{flex: 1}}>
                 {this.renderNomalNavigationBar('模拟切换顺序组件')}
-                <ChooseList dataArr={this.data}/>
+
+                {this.renderList()}
             </View>
         )
 
     }
+
+    renderList() {
+
+        let arr = ['aa', 'bb', 'cc'];
+        let addArr = []
+        arr.forEach((item) => {
+            addArr.push(
+                <ChooseList title={item}/>
+            )
+        })
+        return addArr
+
+    }
+
 
     /**************************************** 逻辑处理 ****************************************/
 
