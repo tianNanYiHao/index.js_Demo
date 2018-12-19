@@ -30,9 +30,30 @@ export default class ChooseCellIndex extends BaseComponent {
 
     constructor(props) {
         super(props);
+        this.state = {
+            infoArr: [
+                {
+                    title: 'aa',
+                },
+                {
+                    title: 'bb',
+                },
+                {
+                    title: 'cc',
+                },
+                {
+                    title: 'dd',
+                },
+            ],
+            topArr: [
+                {top: 0},
+                {top: 0},
+                {top: 0},
+                {top: 0},
+            ],
+        }
 
-        this.state = {};
-    }
+    };
 
 
     componentWillMount() {
@@ -40,13 +61,16 @@ export default class ChooseCellIndex extends BaseComponent {
     }
 
 
+    /**
+     * 功能为完成, 暂未做到排序实现, 仅完成了拖拽手势位移
+     */
     /**************************************** 渲染方法 ****************************************/
     render() {
         return (
 
             <View style={{flex: 1}}>
                 {this.renderNomalNavigationBar('模拟切换顺序组件')}
-                <View style={{backgroundColor:'#090'}}>
+                <View style={{backgroundColor: '#090', top: 100}}>
                     {this.renderList()}
                 </View>
             </View>
@@ -56,20 +80,23 @@ export default class ChooseCellIndex extends BaseComponent {
 
     renderList() {
 
-        let arr = ['aa', 'bb', 'cc'];
         let addArr = []
-        arr.forEach((item,index) => {
+        this.state.infoArr.forEach((item, index) => {
             addArr.push(
-                <ChooseList key={index} title={item}/>
+                <ChooseList key={item.title} title={item.title} topOY={this.state.topArr[index].top} index={index}
+                            callBack={(realChangeOY, isPlus) => this.changeState(index, realChangeOY, isPlus)}/>
             )
-        })
+        });
         return addArr
-
     }
 
 
     /**************************************** 逻辑处理 ****************************************/
+    changeState(index, realChangeOY, isPlus) {
+        console.log(`${index}` + '>>>>>' + `${realChangeOY}`);
 
+
+    }
 
 }
 
