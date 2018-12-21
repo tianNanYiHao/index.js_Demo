@@ -20,16 +20,17 @@ import {DeviceEventEmitter} from 'react-native'
  * 一定要增加 type类型字段,且value值与下列类型字符串匹配,
  * 其目的就在于根据推送的业务类型,进行不同的推送分发
  * 否则默认接受全局推送
+ * 如-> (type:'01')
  */
 class DeviceEventEmitterManager {
 
 
     /*推送的业务类型*/
     static type = {
-        NotifactionGloable: 'NotifactionGloable', //全局范围内,接受推送
-        NotifactionPage_Pay: 'NotifactionPage_Pay', //单独某一页面接受推送_支付通知,
-        NotifactionPage_Buy: 'NotifactionPShowage_Buy', //单独某一页面接受推送_购买通知,
-        NotifactionPage_Show: 'NotifactionPage_Show', //单独某一页面接受推送_购买通知,
+        NotifactionGloable: '01', //全局范围内,接受推送
+        NotifactionPage_Pay: '02', //单独某一页面接受推送_支付通知,
+        NotifactionPage_Buy: '03', //单独某一页面接受推送_购买通知,
+        NotifactionPage_Show: '04', //单独某一页面接受推送_购买通知,
     }
 
 
@@ -45,14 +46,14 @@ class DeviceEventEmitterManager {
         if (params.type === this.type.NotifactionPage_Show) {
             DeviceEventEmitter.emit(this.type.NotifactionPage_Show, params);
         }
-        else{
+        else {
             DeviceEventEmitter.emit(this.type.NotifactionGloable, params);
         }
     }
 
     /*消息监听*/
-    static addListener(name,callBack){
-        return DeviceEventEmitter.addListener(name,callBack);
+    static addListener(name, callBack) {
+        return DeviceEventEmitter.addListener(name, callBack);
     }
 
 }
