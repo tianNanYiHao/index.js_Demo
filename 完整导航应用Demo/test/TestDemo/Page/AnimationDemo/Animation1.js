@@ -76,7 +76,7 @@ export default class Animation1 extends BaseComponent {
     }
 
     renderHalfPage() {
-        return <HalfPage ref={ref => this.halfPage = ref} type={HalfPage.Type.halfPagePaypwd}/>
+        return <HalfPage ref={ref => this.halfPage = ref} type={HalfPage.Type.halfPagePaylist}/>
 
     }
 

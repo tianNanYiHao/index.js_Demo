@@ -20,7 +20,9 @@ import {
     TouchableOpacity,
     StyleSheet,
     FlatList,
+    NativeModules
 } from 'react-native'
+
 
 import PropsTyps from 'prop-types'
 import Dimensions from 'Dimensions'
@@ -32,21 +34,21 @@ export default class Home extends BaseComponent {
 
 
     constructor(props) {
-      super(props);
-      this.state = {
+        super(props);
+        this.state = {
 
-          data:[
-              {title:'DeepHomeDemo'},
-              {title:'TestDemo'},
-              {title:'Teaset_Select'},
-              {title:'FetchDemo'},
-              {title:'AnimatedDemo'},
-              {title:'FlatlistDemo'},
-              {title:'ScrollViewDemo'},
-              {title:'LRenderTest'},
-              {title:'LResponderDemo'},
-          ]
-      };
+            data: [
+                {title: 'DeepHomeDemo'},
+                {title: 'TestDemo'},
+                {title: 'Teaset_Select'},
+                {title: 'FetchDemo'},
+                {title: 'AnimatedDemo'},
+                {title: 'FlatlistDemo'},
+                {title: 'ScrollViewDemo'},
+                {title: 'LRenderTest'},
+                {title: 'LResponderDemo'},
+            ]
+        };
     }
 
     render() {
@@ -57,11 +59,11 @@ export default class Home extends BaseComponent {
                 <FlatList
                     style={styles.flatlist}
                     data={this.state.data}
-                    renderItem={(item)=><CellView {...item} cellClick={()=>this.cellView(item.index)}/>}
-                    ItemSeparatorComponent={()=> <View style={{backgroundColor:'#dddf00',height:5}}/>}
+                    renderItem={(item) => <CellView {...item} cellClick={() => this.cellView(item.index)}/>}
+                    ItemSeparatorComponent={() => <View style={{backgroundColor: '#dddf00', height: 5}}/>}
                     horizontal={false}
-                    keyExtractor={(item,index)=>index}
-                    columnWrapperStyle={{paddingHorizontal:5, flexWrap:'nowrap',alignItems:'center'}}
+                    keyExtractor={(item, index) => index}
+                    columnWrapperStyle={{paddingHorizontal: 5, flexWrap: 'nowrap', alignItems: 'center'}}
                     numColumns={3}
                 />
             </View>
@@ -72,7 +74,7 @@ export default class Home extends BaseComponent {
 
     /**************************************** 逻辑处理 ****************************************/
 
-    cellView(tag){
+    cellView(tag) {
 
         if (tag === 0) {
             this.push('LHome1')
@@ -102,19 +104,19 @@ export default class Home extends BaseComponent {
         if (tag === 8) {
             this.push('LResponderDemo');
         }
+        if (tag === 9) {
+        }
     }
 
 }
 
 const styles = StyleSheet.create({
 
-    container:{
-
-    },
-    flatlist:{
-        alignSelf:'center',
-        width:Dimensions.get('window').width,
-        height:Dimensions.get('window').height-100,
+    container: {},
+    flatlist: {
+        alignSelf: 'center',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height - 100,
 
     },
 
@@ -127,39 +129,39 @@ const styles = StyleSheet.create({
         borderColor: '#090',
 
     },
-    cellViewContainer:{
-        alignItems:'center',
-        justifyContent:'center',
-        margin:10,
-        paddingHorizontal:20,
-        paddingVertical:20,
-        backgroundColor:'#0f0',
-        borderColor:'#088eff',
-        borderWidth:1,
-        borderRadius:20,
-        width: (Dimensions.get('window').width - 20 - 40)/3
+    cellViewContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 10,
+        paddingHorizontal: 20,
+        paddingVertical: 20,
+        backgroundColor: '#0f0',
+        borderColor: '#088eff',
+        borderWidth: 1,
+        borderRadius: 20,
+        width: (Dimensions.get('window').width - 20 - 40) / 3
     },
-    cellViewText:{
+    cellViewText: {
 
-        fontSize:20,
-        textAlign:'center',
+        fontSize: 20,
+        textAlign: 'center',
     },
 
 })
 
 
 /**************************************** CellView ****************************************/
-class CellView extends Component{
+class CellView extends Component {
 
-    static propTypes={
-        cellClick:PropsTyps.func.isRequired,
+    static propTypes = {
+        cellClick: PropsTyps.func.isRequired,
     }
 
-    render(){
-        return(
-            <TouchableOpacity onPress={()=>this.props.cellClick(this.props.item.index)}>
+    render() {
+        return (
+            <TouchableOpacity onPress={() => this.props.cellClick(this.props.item.index)}>
                 <View style={styles.cellViewContainer}>
-                    <Text style={styles.cellViewText} >{this.props.item.title}</Text>
+                    <Text style={styles.cellViewText}>{this.props.item.title}</Text>
                 </View>
             </TouchableOpacity>
         )
