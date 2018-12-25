@@ -24,6 +24,7 @@ import LScrollViewDemo from './ScrollViewDemo/ScrollViewDemo'
 import LRenderTest from './renderTest/RenderTest'
 import LResponderDemo from './ResponderDemo/ResponderDemo'
 import LChooseCellIndex from './ResponderDemo/ChooseCellIndex'
+import LSwiperDemo from './SwiperDemo/SwiperDemo'
 
 
 import LHome from './Home/Home'
@@ -59,6 +60,7 @@ module.exports={
     LAnimation5,
     LResponderDemo,
     LChooseCellIndex,
+    LSwiperDemo,
 
 
 

@@ -45,8 +45,9 @@ export default class Home extends BaseComponent {
                 {title: 'AnimatedDemo'},
                 {title: 'FlatlistDemo'},
                 {title: 'ScrollViewDemo'},
-                {title: 'LRenderTest'},
-                {title: 'LResponderDemo'},
+                {title: 'RenderTest'},
+                {title: 'ResponderDemo'},
+                {title: 'SwiperDemo'},
             ]
         };
     }
@@ -105,6 +106,7 @@ export default class Home extends BaseComponent {
             this.push('LResponderDemo');
         }
         if (tag === 9) {
+            this.push('LSwiperDemo');
         }
     }
 

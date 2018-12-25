@@ -32,6 +32,7 @@ import {
     LAnimation5,
     LResponderDemo,
     LChooseCellIndex,
+    LSwiperDemo,
 
 
 } from '../Page';
@@ -68,6 +69,7 @@ const RouteConfigs = {
         LAnimation5:{screen:LAnimation5},
         LResponderDemo:{screen:LResponderDemo},
         LChooseCellIndex:{screen:LChooseCellIndex},
+        LSwiperDemo:{screen:LSwiperDemo},
 
 
 
