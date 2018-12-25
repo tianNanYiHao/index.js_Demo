@@ -38,16 +38,16 @@ export default class Home extends BaseComponent {
         this.state = {
 
             data: [
-                {title: 'DeepHomeDemo'},
-                {title: 'TestDemo'},
-                {title: 'Teaset_Select'},
-                {title: 'FetchDemo'},
-                {title: 'AnimatedDemo'},
-                {title: 'FlatlistDemo'},
-                {title: 'ScrollViewDemo'},
-                {title: 'RenderTest'},
-                {title: 'ResponderDemo'},
-                {title: 'SwiperDemo'},
+                {title: '路由跳转demo'},
+                {title: '胡乱测试demo'},
+                {title: 'Teaset测试demo'},
+                {title: 'Fetch网络测试demo'},
+                {title: 'Animate动画demo'},
+                {title: 'Flatlist组件demo'},
+                {title: 'ScrollView组件demo'},
+                {title: 'Render测试demo'},
+                {title: 'Responder手势demo'},
+                {title: 'Swiper轮播demo'},
             ]
         };
     }

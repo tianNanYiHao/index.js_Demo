@@ -26,11 +26,19 @@ import pxdp from "../../Common/pxdp";
 
 export default class SwiperDemo extends BaseComponent {
 
+
+    componentDidMount() {
+
+    }
+
     render() {
         return (
             <View style={{flexDirection: 'column'}}>
                 {this.renderNomalNavigationBar('轮播图组件Demo', '#09dffe')}
-                
+
+                <TouchableOpacity ref={ref => this.touch = ref} onPress={()=>this.cccc()}/>
+
+
                 {/*swiper需要一个固定大小的父视图来固定, 否则没有效果*/}
                 <View style={{width: pxdp.width, height: pxdp.fixHeight(300)}}>
 
@@ -60,7 +68,7 @@ export default class SwiperDemo extends BaseComponent {
                         }}/>}  //活动状态的dot
 
                         onIndexChanged={(index) => this._onIndexChanged(index)} //当用户拖拽时更新索引调用
-                        onTouchStartCapture={(index) =>this._onTouchStartCapture(index)} //触摸当前图片的事件
+                        onTouchStartCapture={(index) => this._onTouchStartCapture(index)} //触摸当前图片的事件
                     >
                         <View style={{width: pxdp.width, height: pxdp.fixHeight(300), backgroundColor: '#ffd'}}/>
                         <View style={{width: pxdp.width, height: pxdp.fixHeight(300), backgroundColor: '#f0d'}}/>
@@ -74,8 +82,8 @@ export default class SwiperDemo extends BaseComponent {
 
 
     /**************************************** 事件处理 ****************************************/
-    _onTouchStartCapture(index){
-        console.log('this_onTouchStartCapture'+`${index}`)
+    _onTouchStartCapture(index) {
+        console.log('this_onTouchStartCapture' + `${index}`)
     }
 
     _onIndexChanged(index) {
