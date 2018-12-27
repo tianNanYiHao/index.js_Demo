@@ -28,7 +28,12 @@ export default class SwiperDemo extends BaseComponent {
 
 
     componentDidMount() {
-
+     Object.assign(TouchableOpacity.prototype,{
+         click,
+     })
+    }
+    cccc(){
+        thistouch.click
     }
 
     render() {

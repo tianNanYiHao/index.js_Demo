@@ -21,9 +21,9 @@ import {
     StyleSheet,
 } from 'react-native'
 import BaseComponent from "../BaseComponent/BaseComponent";
+import {addCustomProps} from "../../Common/AddComponetProps";
 
 export default class Home2 extends BaseComponent {
-
 
     render() {
         return (
