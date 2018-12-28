@@ -24,6 +24,14 @@ import BaseComponent from "../BaseComponent/BaseComponent";
 
 export default class Home1 extends BaseComponent {
 
+    constructor(props) {
+        super(props);
+        this.flag = false;
+        this.state = {
+            urll: '',
+        };
+    }
+
     render() {
         return (
 
@@ -40,12 +48,32 @@ export default class Home1 extends BaseComponent {
                     </TouchableOpacity>
                 </View>
 
+                <TouchableOpacity onPress={() => this.change()}>
+                    <Image source={{uri: this.state.urll}}
+                           style={{height: 100, width: 100}}/>
+                           <Text>sssssss</Text>
+                </TouchableOpacity>
+
             </View>
 
         )
     }
 
+    /**************************************** Description ****************************************/
+    change() {
+        this.flag = !this.flag;
+        if (this.flag) {
 
+            this.setState({
+                urll:'https://go-test.sandpay.com.cn/sandbaotest/扫一扫.png'
+            })
+        }
+        else {
+            this.setState({
+                urll:'https://go-test.sandpay.com.cn/sandbaotest/扫一扫1.png'
+            })
+        }
+    }
 
     action(tag) {
         if (tag === 1) {

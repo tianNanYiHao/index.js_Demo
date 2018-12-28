@@ -35,6 +35,7 @@ export default class Home extends BaseComponent {
 
     constructor(props) {
         super(props);
+
         this.state = {
 
             data: [
@@ -67,6 +68,8 @@ export default class Home extends BaseComponent {
                     columnWrapperStyle={{paddingHorizontal: 5, flexWrap: 'nowrap', alignItems: 'center'}}
                     numColumns={3}
                 />
+
+
             </View>
 
         )
@@ -74,6 +77,9 @@ export default class Home extends BaseComponent {
 
 
     /**************************************** 逻辑处理 ****************************************/
+
+
+
 
     cellView(tag) {
 
