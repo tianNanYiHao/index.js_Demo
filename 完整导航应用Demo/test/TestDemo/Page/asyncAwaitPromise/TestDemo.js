@@ -23,7 +23,7 @@ import {
 import BaseComponent from "../BaseComponent/BaseComponent";
 import Button from 'react-native-button'
 import pxdp from "../../Common/pxdp";
-import Dog from "./Dog";
+import Dog, {nextTimeChangeString, pig1Say, pig2, roubao} from "./Dog";
 
 
 let w = Dimensions.get('window').width;
@@ -63,6 +63,9 @@ export default class TestDemo extends BaseComponent {
 
                     <Button style={styles.button} styleDisabled={styles.buttonDisabled} onPress={() => this.check5()}>
                         测试函数原型
+                    </Button>
+                    <Button style={styles.button} styleDisabled={styles.buttonDisabled} onPress={() => this.check6()}>
+                        Moudle/export的使用
                     </Button>
 
                 </View>
@@ -125,8 +128,6 @@ export default class TestDemo extends BaseComponent {
 
     /**************************************** 测试1 测试Promise ****************************************/
     check3() {
-
-
         // Promise.all([this.loadData1(1000), this.loadData2(1000), this.loadData3(1000)]).then(([result1, result2, result3]) => {
         //
         // })
@@ -219,6 +220,14 @@ export default class TestDemo extends BaseComponent {
     }
 
 
+    /**************************************** 模块导入导出export相关 ****************************************/
+    check6(){
+
+        pig1Say()
+        console.log(pig2)
+        console.log(roubao)
+        nextTimeChangeString('我是王力', '我是章明');
+    }
 }
 
 const styles = StyleSheet.create({

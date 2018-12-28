@@ -27,7 +27,6 @@ export default class Home2 extends BaseComponent {
 
     render() {
         return (
-
             <View>
                 {this.renderNoLeftItemNaivgationBar('Home2页面')}
                 <View style={{
@@ -39,9 +38,7 @@ export default class Home2 extends BaseComponent {
                     <TouchableOpacity onPress={() => this.action(1)}>
                         <Text style={styles.text}>{'Push:Home3'}</Text>
                     </TouchableOpacity>
-
                 </View>
-
             </View>
 
 
