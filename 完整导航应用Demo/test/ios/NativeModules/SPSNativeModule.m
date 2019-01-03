@@ -17,7 +17,7 @@
 RCTPromiseResolveBlock rctPromiseResolveBlock;
 RCTPromiseRejectBlock rctPromiseRejectBlock;
 RCTResponseSenderBlock rctResponseSenderBlock;
-static NSString *spsCallBackUrl = nil;
+
 
 //判断系统版本
 #define IOS_VERSION_8 (([[[UIDevice currentDevice] systemVersion] floatValue] >=8.0 && [[[UIDevice currentDevice] systemVersion] floatValue] <=9.0)? (YES):(NO))
@@ -35,7 +35,7 @@ static NSString *spsCallBackUrl = nil;
 
 RCT_EXPORT_MODULE()
 
-//使用callBack方式 进行通信
+//获取支付结果并退出SPS->使用callBack方式 进行通信
 RCT_EXPORT_METHOD(getPayInfoAndDismissSps:(RCTResponseSenderBlock)callBack){
   
   // sandbaoApp://sandbao/sps?tn=decabe70d0e529c0907199b413a24592&scheme=com.sand.moniJiuZhangApp
@@ -51,7 +51,7 @@ RCT_EXPORT_METHOD(getPayInfoAndDismissSps:(RCTResponseSenderBlock)callBack){
   
 }
 
-//使用Promise方式进行通信,切记resolve及reject在方法名上都要回调,否则报错
+//获取支付结果并退出SPS->使用Promise方式进行通信,切记resolve及reject在方法名上都要回调,否则报错
 RCT_EXPORT_METHOD(getPayInfoAndDismissSps2:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject){
   
   // sandbaoApp://sandbao/sps?tn=decabe70d0e529c0907199b413a24592&scheme=com.sand.moniJiuZhangApp
@@ -67,9 +67,11 @@ RCT_EXPORT_METHOD(getPayInfoAndDismissSps2:(RCTPromiseResolveBlock)resolve rejec
 }
 
 
-RCT_EXPORT_METHOD(openBack:(NSString*)url){
-  spsCallBackUrl = url;
-  NSURL *url2 = [[NSURL alloc] initWithString:spsCallBackUrl];
+//退出sps后,回跳商户App,并返回相应的支付结果!
+RCT_EXPORT_METHOD(openBack:(NSString*)scheme tn:(NSString*)tn responseCode:(NSString*)responseCode){
+  //@"%@://sandbao/sps?tn=%@&respCode=%@",
+  NSString *urlString = [NSString stringWithFormat:@"%@://sandbao/sps?tn=%@&respCode=%@",scheme,tn,responseCode];
+  NSURL *url2 = [[NSURL alloc] initWithString:urlString];
   [SPSNativeModule openUrl:url2];
 }
 
