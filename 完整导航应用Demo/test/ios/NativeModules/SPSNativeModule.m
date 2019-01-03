@@ -87,7 +87,9 @@ RCT_EXPORT_METHOD(openBack:(NSString*)scheme tn:(NSString*)tn responseCode:(NSSt
   if (IOS_VERSION_9 || IOS_VERSION_8) {
     [[UIApplication sharedApplication] openURL:url];
   }else{
-    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    });
   }
 }
 
