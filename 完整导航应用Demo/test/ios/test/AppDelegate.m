@@ -8,6 +8,7 @@
  */
 
 #import "AppDelegate.h"
+#import <CodePush/CodePush.h>
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -19,7 +20,12 @@
 {
   NSURL *jsCodeLocation;
 
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  
+                #ifdef DEBUG
+                    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+                #else
+                    jsCodeLocation = [CodePush bundleURL];
+                #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"test"
@@ -35,6 +41,9 @@
   return YES;
 }
 
+
+
+///////////////////////////////////////////外部App唤起test///////////////////////
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
   // sps
@@ -52,13 +61,6 @@
 - (BOOL)handleSps:(NSURL*)url{
   // sandbaoApp://sandbao/sps?tn=decabe70d0e529c0907199b413a24592&scheme=com.sand.moniJiuZhangApp
   NSLog(@"====>%@",url.description);
-  
-  
-  
-  
-  
-  
-  
   
   NSURL *jsCodeUrl;
   jsCodeUrl = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];

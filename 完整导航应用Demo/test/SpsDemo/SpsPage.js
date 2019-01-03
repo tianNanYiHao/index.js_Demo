@@ -48,11 +48,9 @@ export default class SpsPage extends BaseComponent {
                     <TouchableOpacity style={{margin:20}} onPress={() => this.dismiss('0001')}>
                         <Text>支付取消0001</Text>
                     </TouchableOpacity>
-
                     <TouchableOpacity style={{margin:20}} onPress={() => this.dismiss('0002')}>
                         <Text>支付失败0002</Text>
                     </TouchableOpacity>
-
                 </View>
             </View>
         )
