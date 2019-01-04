@@ -146,12 +146,8 @@ export default class Lunch extends BaseComponent {
 
 // 这一行必须要写
 Lunch = CodePush(codePushOptions)(Lunch)
-//https://www.jianshu.com/p/6a5e00d22723 热跟新教程
-//1. 将budle包导入xcode, 然后运行一个release版本,用于测试
-//2. 修改代码,用于热更新变化,
-//3. 执行命令,打出新代码bundle包, 替换到xcode工程,
-//4. 执行命令,上传bundle包到code-push,
-//5. 手机上杀掉App, 再重新打开, 看到推送及更新
+
+
 
 const styles = StyleSheet.create({
     text: {
@@ -164,3 +160,16 @@ const styles = StyleSheet.create({
 
     }
 })
+
+
+//https://www.jianshu.com/p/6a5e00d22723 热跟新教程
+//1. 将budle包导入xcode, 然后运行一个release/staging版本,用于生产/测试更新
+//2. 修改代码,用于热更新变化,
+//3. 执行命令,打出新代码bundle包, 替换到xcode工程,
+//4. 执行命令,上传bundle包到code-push,
+//5. 手机上杀掉App, 再重新打开, 看到推送及更新
+//ps:CodePush默认是更新Staging 环境的，如果发布生产环境的更新包，需要指定--d参数：--d Production，如果发布的是强制更新包，需要加上 --m true强制更新
+//ps:切换Production/Staging模式, 需要在Xcode中 Edit Scheme 切换Release/Staging , 记得Clean
+
+
+

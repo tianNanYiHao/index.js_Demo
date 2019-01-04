@@ -57,7 +57,7 @@ export default class Home extends BaseComponent {
         return (
 
             <View style={styles.container}>
-                {this.renderNoLeftItemNaivgationBar('Home页面')}
+                {this.renderNoLeftItemNaivgationBar('Home页面-----1---')}
                 <FlatList
                     style={styles.flatlist}
                     data={this.state.data}
