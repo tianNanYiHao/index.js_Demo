@@ -359,8 +359,31 @@
 
 
 -- 自关联
-  -- ....
+  -- source xxx.sql 即可
+  -- 举例: 中国省市地区SQL
++-----------+--------------+
+| name      | name         |
++-----------+--------------+
+| 江苏省    | 南京市       |
+| 江苏省    | 无锡市       |
+| 江苏省    | 徐州市       |
+| 江苏省    | 常州市       |
+| 江苏省    | 苏州市       |
+| 江苏省    | 南通市       |
+| 江苏省    | 连云港市     |
+| 江苏省    | 淮安市       |
+| 江苏省    | 盐城市       |
+| 江苏省    | 扬州市       |
+| 江苏省    | 镇江市       |
+| 江苏省    | 泰州市       |
+| 江苏省    | 宿迁市       |
++-----------+--------------+
+  select state.name,city.name from region_directory as state inner join region_directory as city on state.id=city.pid having state.name='江苏省';
 
+-- 子查询
+
+  -- 查询身高最高的男生信息
+  select * from student where height=(select max(height) from student) order by gender=1;
 
 
 
