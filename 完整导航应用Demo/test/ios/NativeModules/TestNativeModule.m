@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
 
+
 RCTPromiseResolveBlock ResolveBlock; //Promise返回成功
 RCTPromiseRejectBlock RejectBlock;   //Promise返回失败
 

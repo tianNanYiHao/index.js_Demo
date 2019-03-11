@@ -13,6 +13,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import "SPSViewController.h"
+#import "LFEmitter.h"
 
 @implementation AppDelegate
 
@@ -38,10 +39,26 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  //添加 截屏通知监听
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(listenGetScreen:) name:UIApplicationUserDidTakeScreenshotNotification object:nil];
+  
   return YES;
 }
 
 
+/**
+ 接收到截屏通知-通过LFEmitter类转发RN层
+
+ @param send 接受到的消息
+ */
+- (void)listenGetScreen:(NSNotification*)send{
+  
+  NSLog(@"-=-=-=-=- 你截屏了 -=-=-=-=-=");
+  NSLog(@"-=-=-=-=- 从ios 发送消息到 RN -=-=-=-=-=");
+  
+  [LFEmitter postNotiToRN:@"heiheihei2" args:nil];
+}
 
 ///////////////////////////////////////////外部App唤起test///////////////////////
 

@@ -20,6 +20,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		282086DF22362A70000D1EED /* LFEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 282086DE22362A70000D1EED /* LFEmitter.m */; };
 		282A286021D0C9BB006BA30D /* TestNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 282A285F21D0C9BB006BA30D /* TestNativeModule.m */; };
 		28C4D6A721DC8B26009F5E04 /* SPSNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C4D6A621DC8B26009F5E04 /* SPSNativeModule.m */; };
 		28C4D6AA21DC8CB3009F5E04 /* SPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C4D6A921DC8CB3009F5E04 /* SPSViewController.m */; };
@@ -314,6 +315,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = test/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = test/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		282086DD22362A70000D1EED /* LFEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LFEmitter.h; sourceTree = "<group>"; };
+		282086DE22362A70000D1EED /* LFEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LFEmitter.m; sourceTree = "<group>"; };
 		282A285F21D0C9BB006BA30D /* TestNativeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestNativeModule.m; sourceTree = "<group>"; };
 		28C4D6A621DC8B26009F5E04 /* SPSNativeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SPSNativeModule.m; sourceTree = "<group>"; };
 		28C4D6A821DC8CB3009F5E04 /* SPSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPSViewController.h; sourceTree = "<group>"; };
@@ -440,6 +443,7 @@
 		13B07FAE1A68108700A75B9A /* test */ = {
 			isa = PBXGroup;
 			children = (
+				2820865D2235FC96000D1EED /* modules */,
 				28EF008221DEFC4500848CB1 /* assets */,
 				28EF008321DEFC4600848CB1 /* main.jsbundle */,
 				28EF008421DEFC4600848CB1 /* main.jsbundle.meta */,
@@ -474,6 +478,15 @@
 				280136D821C23F1E00DA1AB9 /* libprivatedata-tvOS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2820865D2235FC96000D1EED /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				282086DD22362A70000D1EED /* LFEmitter.h */,
+				282086DE22362A70000D1EED /* LFEmitter.m */,
+			);
+			path = modules;
 			sourceTree = "<group>";
 		};
 		282A285D21D0C97E006BA30D /* NativeModules */ = {
@@ -1008,6 +1021,7 @@
 			files = (
 				282A286021D0C9BB006BA30D /* TestNativeModule.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				282086DF22362A70000D1EED /* LFEmitter.m in Sources */,
 				28C4D6AA21DC8CB3009F5E04 /* SPSViewController.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				28C4D6A721DC8B26009F5E04 /* SPSNativeModule.m in Sources */,

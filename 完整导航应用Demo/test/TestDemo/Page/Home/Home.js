@@ -49,6 +49,7 @@ export default class Home extends BaseComponent {
                 {title: 'Render测试demo'},
                 {title: 'Responder手势demo'},
                 {title: 'Swiper轮播demo'},
+                {title: 'EventEmitter原生向RN通信'},
             ]
         };
     }
@@ -113,6 +114,9 @@ export default class Home extends BaseComponent {
         }
         if (tag === 9) {
             this.push('LSwiperDemo');
+        }
+        if (tag === 10) {
+            this.push('LEventEmitterDemo');
         }
     }
 

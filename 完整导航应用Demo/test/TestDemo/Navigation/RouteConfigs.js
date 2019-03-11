@@ -33,6 +33,7 @@ import {
     LResponderDemo,
     LChooseCellIndex,
     LSwiperDemo,
+    LEventEmitterDemo,
 
 
 } from '../Page';
@@ -70,6 +71,7 @@ const RouteConfigs = {
         LResponderDemo:{screen:LResponderDemo},
         LChooseCellIndex:{screen:LChooseCellIndex},
         LSwiperDemo:{screen:LSwiperDemo},
+        LEventEmitterDemo:{screen:LEventEmitterDemo},
 
 
 

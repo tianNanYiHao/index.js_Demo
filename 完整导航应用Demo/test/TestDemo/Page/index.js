@@ -25,6 +25,7 @@ import LRenderTest from './renderTest/RenderTest'
 import LResponderDemo from './ResponderDemo/ResponderDemo'
 import LChooseCellIndex from './ResponderDemo/ChooseCellIndex'
 import LSwiperDemo from './SwiperDemo/SwiperDemo'
+import LEventEmitterDemo from './EventEmitterDemo/EventEmitterDemo'
 
 
 import LHome from './Home/Home'
@@ -61,6 +62,7 @@ module.exports={
     LResponderDemo,
     LChooseCellIndex,
     LSwiperDemo,
+    LEventEmitterDemo,
 
 
 
