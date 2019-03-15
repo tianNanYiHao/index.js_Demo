@@ -26,6 +26,10 @@ import *as carActions from '../Actions/CarActions'
 
 class Car extends Component {
 
+    componentDidMount() {
+	    console.log(this.props.abc)
+    }
+
 	render() {
 		return (
 			<View style={{flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: -100}}>
@@ -59,10 +63,13 @@ const styles = StyleSheet.create({})
 /**************************************** 关联Redux ****************************************/
 
 const mapStateToProps = (store) => {
+	console.log(store.carReducer)
+	console.log(store.loginReducer)
 	return {
 		currentCarNum: store.carReducer.carNumber,
 		currentUser: store.loginReducer.user,
-		currentLogFlag:store.loginReducer.logFlag
+		currentLogFlag:store.loginReducer.logFlag,
+		abc:"啊啊啊啊啊不不不不不不不不吃吃吃吃次吃吃吃吃吃",
 	}
 }
 

@@ -22,8 +22,9 @@ const initState = {
  * @param state
  * @param action
  * @returns {{logFlag: string, user: null}}
+ * ps:方法名可以根据业务任意写, 会由Redux自动调用!
  */
-export default function loginReducer(state = initState, action) {
+export default function updataLogInfo(state = initState, action) {
 	switch (action.type) {
 		/***************** 登陆成功 *****************/
 		case LoginActionTypes.LoginSuccess:
