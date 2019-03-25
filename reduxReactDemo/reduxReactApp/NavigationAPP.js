@@ -18,7 +18,6 @@ const NavigationApp = StackNavigator(
 	{
 		Login: {screen: Login},
 		Car: {screen: Car}
-
 	},
 	{
 		// 启动app进入登录页

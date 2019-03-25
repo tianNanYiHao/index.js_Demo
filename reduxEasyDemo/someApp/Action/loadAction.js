@@ -10,8 +10,7 @@
  */
 
 
-
-import {loadSuccess,loadError} from './loadActionType'
+import {loadSuccess, loadError} from './loadActionType'
 
 
 /*
@@ -19,27 +18,23 @@ import {loadSuccess,loadError} from './loadActionType'
 * 通过page页面的dispatch调用该方法
 *
 * */
-export function loadSomeThing() {
-    return dispatch=>{
-        fetch('https://www.baidu.com').then(
-            dispatch(loadok('oooooooooooooo'))
-        ).catch(
-            dispatch(loadnotOk('eeeeeeeeee'))
-        )
+export function loadSomeThing(type) {
+    return dispatch => {
+        type ? dispatch(loadok('success[|]success')) : dispatch(loadnotOk('lose{|}lose'))
     }
 }
 
 
 export function loadok(info) {
     return {
-        type:loadSuccess,
-        info:info
+        type: loadSuccess,
+        info: info
     }
 }
 
 export function loadnotOk(info) {
     return {
-        type:loadError,
-        info:info
+        type: loadError,
+        info: info
     }
 }

@@ -25,7 +25,7 @@ import {
 
 } from 'react-native'
 
-import PageOne from './pageOne'
+import AppNav from './Naivgation'
 
 const store = configerStore()
 
@@ -34,7 +34,7 @@ export default class Root extends Component{
         return (
 
             <Provider store={store}>
-                <PageOne/>
+                <AppNav/>
             </Provider>
         )
     }

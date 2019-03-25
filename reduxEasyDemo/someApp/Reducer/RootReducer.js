@@ -17,9 +17,11 @@
 import {combineReducers} from 'redux'
 
 import loadReducer from './loadReducer'
+import testReducer from './testReducer'
 
 const rootReducer = combineReducers({
     loadReducer,
+    testReducer,
 
 })
 

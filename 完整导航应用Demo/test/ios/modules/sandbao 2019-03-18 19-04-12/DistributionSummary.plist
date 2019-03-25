@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>sandbao.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>707CEDD6D61E4CAC2C11F9F9EB70037F4A414F50</string>
+				<key>dateExpires</key>
+				<string>2019/6/6</string>
+				<key>type</key>
+				<string>iOS Development</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>CYP2Q7U7L3.com.sand.sandbao</string>
+				<key>aps-environment</key>
+				<string>development</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>CYP2Q7U7L3</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>sandbao.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>96e2ea38-0111-47a3-8774-c39822879554</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: com.sand.sandbao</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>CYP2Q7U7L3</string>
+				<key>name</key>
+				<string>Sandpay Network Service Co.,Ltd.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
