@@ -37,19 +37,30 @@ class PageTwo extends Component {
             <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
 
                 <View style={styles.showView}>
-                    <Text>data.</Text>
+                    <Text>data.name</Text>
                     <Text>{this.props.data.name}</Text>
                 </View>
 
                 <View style={styles.showView}>
-                    <Text>data.single</Text>
-                    <Text>{this.props.cd}</Text>
+                    <Text>data.age</Text>
+                    <Text>{this.props.data.age}</Text>
                 </View>
 
                 <View style={styles.showView}>
-                    <Text>data...</Text>
+                    <Text>data.like.person1</Text>
+                    <Text>{this.props.data.like[0].person}</Text>
+                </View>
+
+                <View style={styles.showView}>
+                    <Text>data.like.today.am.home</Text>
                     <Text>{this.props.data.today.am.home}</Text>
                 </View>
+                <View style={styles.showView}>
+                    <Text>data.like.today.pm.school</Text>
+                    <Text>{this.props.data.today.pm.school}</Text>
+                </View>
+
+
 
 
                 <TouchableOpacity onPress={() => this.do1()}>
@@ -85,7 +96,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         backgroundColor: '#c44333',
         width: 250,
-        height: 89,
+        height: 50,
         justifyContent: 'center',
         alignItems: 'center'
     },

@@ -15,9 +15,9 @@ const PersonData = {
     "name": '',
     "age": '',
     "like": [
-        {"person1":''},
-        {"person2":''},
-        {"person3":''},
+        {"person":''},
+        {"person":''},
+        {"person":''},
     ],
     "today": {
         "am": {

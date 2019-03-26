@@ -14,14 +14,12 @@
 import {testActionType0,testActionType1,testActionType2} from './testActionType'
 import PersonData from '../Common/DataModel'
 
-
-var a = 1;
 export function changeData1() {
 
     return dispatch => {
         PersonData.name = '校长'
         PersonData.age = '59'
-        PersonData.like = [{'person1': 'son'}, {'person2': 'dog'}]
+        PersonData.like = [{'person': 'son'}, {'person': 'dog'}]
         PersonData.today = {
             "am": {
                 "home": 'play',
@@ -41,7 +39,7 @@ export function changeDate2() {
     return dispatch=>{
         PersonData.name = '小明'
         PersonData.age = '19'
-        PersonData.like = [{'person1': 'mom'}, {'person2': 'dad'},]
+        PersonData.like = [{'person': 'mom'}, {'person': 'dad'},]
         PersonData.today = {
             "am": {
                 "home": 'eat',
@@ -62,8 +60,6 @@ export function change1(data) {
     return {
         type: testActionType1,
         data: data,
-        cd:a++
-
     }
 }
 
@@ -71,7 +67,6 @@ export function change2(data) {
     return {
         type: testActionType2,
         data: data,
-        cd:a++
     }
 }
 
