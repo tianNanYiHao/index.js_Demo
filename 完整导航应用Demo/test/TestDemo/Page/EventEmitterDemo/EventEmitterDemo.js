@@ -17,6 +17,7 @@ import {
     Image,
     TouchableOpacity,
     AlertIOS,
+    Platform,
 
 
     NativeModules,
@@ -40,7 +41,10 @@ export default class EventEmitterDemo extends BaseComponent {
 
     componentDidMount() {
 
-        this.addListenner();
+        if (Platform.OS !== 'android') {
+
+            this.addListenner();
+        }
     }
 
 
@@ -48,7 +52,7 @@ export default class EventEmitterDemo extends BaseComponent {
 
         let notiName = 'sssss';
         LFEmitter.setNotiNameByType(notiName, (success) => {
-            AlertIOS.alert("RN->IOS, 传递一个事件监听名"+ notiName,success);
+            AlertIOS.alert("RN->IOS, 传递一个事件监听名" + notiName, success);
         });
 
         this.listenner = NativeModuleEmitter.addListener(notiName, (data) => {
@@ -63,26 +67,43 @@ export default class EventEmitterDemo extends BaseComponent {
 
     componentWillUnmount() {
         // 删除监听
-        this.listenner.remove()
+        if (Platform.OS !== 'android') {
+            this.listenner.remove()
+        }
     }
 
     render() {
-        return (
-            <View>
-                {this.renderNomalNavigationBar('接受原生发送给RN的消息')}
 
-                <View style={{flexDirection:'column', justifyContent:'center', alignItems:'center', width:300,height:300}}>
-                <Text>{'在本页面进行截屏可以看到效果'}</Text>
-                <Text>{'在本页面进行截屏可以看到效果'}</Text>
-                <Text>{'在本页面进行截屏可以看到效果'}</Text>
-                <Text>{'调用顺序为 NR----设置事件监听名---->iOS保存监听名'}</Text>
-                <Text>{'调用顺序为 iOS----触发截屏,发送消息推送到---->RN'}</Text>
+        if (Platform.OS === 'android') {
+            return (
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <Text>安卓暂不支持截屏通知...后期在做上去</Text>
                 </View>
-            </View>
+            )
+        } else {
+            return (
+                <View>
+                    {this.renderNomalNavigationBar('接受原生发送给RN的消息')}
 
-        )
+                    <View style={{
+                        flexDirection: 'column', justifyContent:
+                            'center', alignItems:
+                            'center', width:
+                            300, height:
+                            300
+                    }}>
+                        <Text> {'在本页面进行截屏可以看到效果'}</Text>
+                        <Text> {'在本页T面进行截屏可以看到效果'}</Text>
+                        <Text> {'在本页面进行截屏可以看到效果'}</Text>
+                        <Text> {'调用顺序为 NR----设置事件监听名---->iOS保存监听名'}
+                        </Text>
+                        <Text> {'调用顺序为 iOS----触发截屏,发送消息推送到---->RN'}
+                        </Text>
+                    </View>
+                </View>
+            )
+        }
     }
-
 }
 
 /*

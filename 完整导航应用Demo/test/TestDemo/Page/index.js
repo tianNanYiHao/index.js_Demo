@@ -26,6 +26,9 @@ import LResponderDemo from './ResponderDemo/ResponderDemo'
 import LChooseCellIndex from './ResponderDemo/ChooseCellIndex'
 import LSwiperDemo from './SwiperDemo/SwiperDemo'
 import LEventEmitterDemo from './EventEmitterDemo/EventEmitterDemo'
+import LSpinkit from './Spinkit/Spinkit'
+import LQrcode from './ScanQrcode/Qrcode'
+import LScanQrcode from './ScanQrcode/ScanQrcode'
 
 
 import LHome from './Home/Home'
@@ -63,6 +66,9 @@ module.exports={
     LChooseCellIndex,
     LSwiperDemo,
     LEventEmitterDemo,
+    LSpinkit,
+    LQrcode,
+    LScanQrcode,
 
 
 

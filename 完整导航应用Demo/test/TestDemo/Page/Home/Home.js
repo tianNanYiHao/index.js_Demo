@@ -29,6 +29,7 @@ import Dimensions from 'Dimensions'
 import BaseComponent from "../BaseComponent/BaseComponent";
 import {LFlatListDemo} from "../index";
 import LResponderDemo from "../ResponderDemo/ResponderDemo";
+import Spinkit from "../Spinkit/Spinkit";
 
 export default class Home extends BaseComponent {
 
@@ -50,6 +51,9 @@ export default class Home extends BaseComponent {
                 {title: 'Responder手势demo'},
                 {title: 'Swiper轮播demo'},
                 {title: 'EventEmitter原生向RN通信'},
+                {title: 'Spinkit网络加载动画库'},
+                {title: '二维码展示,保存下载'},
+                {title: '二维码识别'},
             ]
         };
     }
@@ -118,6 +122,17 @@ export default class Home extends BaseComponent {
         if (tag === 10) {
             this.push('LEventEmitterDemo');
         }
+        if (tag === 11) {
+            this.push('LSpinkit');
+        }
+        if (tag === 12) {
+            this.push('LQrcode');
+        }
+        if (tag === 13) {
+            this.push('LScanQrcode');
+        }
+
+
     }
 
 }

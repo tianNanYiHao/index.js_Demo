@@ -34,6 +34,10 @@ import {
     LChooseCellIndex,
     LSwiperDemo,
     LEventEmitterDemo,
+    LSpinkit,
+    LQrcode,
+    LScanQrcode,
+
 
 
 } from '../Page';
@@ -72,6 +76,9 @@ const RouteConfigs = {
         LChooseCellIndex:{screen:LChooseCellIndex},
         LSwiperDemo:{screen:LSwiperDemo},
         LEventEmitterDemo:{screen:LEventEmitterDemo},
+        LSpinkit:{screen:LSpinkit},
+        LQrcode:{screen:LQrcode},
+        LScanQrcode:{screen:LScanQrcode},
 
 
 
