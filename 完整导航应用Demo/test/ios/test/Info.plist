@@ -66,5 +66,7 @@
 	<false/>
 	<key>CodePushDeploymentKey</key>
 	<string>$(CODEPUSH_KEY)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>请求您开发相机权限,以便开放扫码等功能</string>
 </dict>
 </plist>

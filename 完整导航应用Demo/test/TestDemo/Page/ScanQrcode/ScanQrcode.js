@@ -19,7 +19,8 @@ import {
     View,
     Image,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native'
 import BaseComponent from "../BaseComponent/BaseComponent";
 
@@ -39,27 +40,33 @@ class ScanQrcode extends BaseComponent{
         return(
             <View style={{flex:1}}>
                 {this.renderNoLeftItemNaivgationBar('二维码扫码识别')}
-                {/*<TouchableOpacity onPress={()=>this.scan()}>*/}
-                {/*<Text>...点我扫码...</Text>*/}
-                {/*</TouchableOpacity>*/}
-
-                <Barcode onBarCodeRead={(e)=>this._onBarCodeRead(e)} style={{flex:1}}/>
-
+                <Barcode ref={barcode=>this._barCode=barcode} onBarCodeRead={(e)=>this._onBarCodeRead(e)} style={{flex:1}}/>
             </View>
 
         )
     }
 
-    scan(){
 
-    }
 
+    /*扫码成功读取数据回调*/
     _onBarCodeRead(e){
         console.log('////////////////////============')
-        console.log(`e.nativeEvent.data.type = ${e.nativeEvent.data.type}, e.nativeEvent.data.code = ${e.nativeEvent.data.code}`)
+        console.log(`e.nativeEvent.data.type(码类型) = ${e.nativeEvent.data.type}, e.nativeEvent.data.code(码值) = ${e.nativeEvent.data.code}`)
         console.log('////////////////////============')
+        this._barCode.stopScan();
+
+        Alert.alert('扫码结果','码类型:'+`${e.nativeEvent.data.type}\n`+`${e.nativeEvent.data.code}`,[
+            {'text':'再扫',onPress:()=>this._scanAgain()},
+            {'text':'取消',onPress:()=>this._scanCancle()},
+        ])
     }
 
+    _scanCancle(){
+        this.pop();
+    }
+    _scanAgain(){
+        this._barCode.startScan();
+    }
 }
 
 const styles = StyleSheet.create({
