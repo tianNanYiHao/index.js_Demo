@@ -3,6 +3,7 @@ package com.test;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.horcrux.svg.SvgPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactNativeHost;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new SvgPackage(),
                     new RCTCapturePackage(),
                     new RNSpinkitPackage(),
                     new CodePush(null, getApplicationContext(), BuildConfig.DEBUG)
