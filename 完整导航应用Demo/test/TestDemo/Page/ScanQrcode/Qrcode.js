@@ -22,15 +22,14 @@
  * react-native link react-native-view-shot
  *
  *
- * //3. RN自带的保存图片API: CameraRoll.
+ * //3. RN自带的保存图片API: CameraRoll. --> 适用于iOS保存图片
  *
- * //4. RN访问本地系统文件库  react-native-fs
+ * //4. RN访问本地系统文件库  react-native-fs -->适用于android保存图片
  * npm install react-native-fs --save
  * react-native link react-native-fs
  *
  *
- * //5. react-native-fetch-blob  上传下载库
- * ///https://my.oschina.net/KJhulinhua/blog/1014853
+
  *
  *
  */
@@ -146,16 +145,8 @@ export default class Qrcode extends BaseComponent {
         try {
             if (Platform.OS === 'android') {
                 console.log('ad')
-                //不经过拼接直接保存到相册
-                // this.saveForAndroid(screenShotShowImg, (result) => {
-                //     this.showToastForShort(`保存成功！地址如下：\n${result}`);
-                // }, () => {
-                //     this.showToastForShort('保存失败！');
-                // });
 
-
-
-                const RNFS = require('react-native-fs'); //文件处理
+                // 安卓使用 react-native-fs 保存图片
                 const storeLocation = `${RNFS.DocumentDirectoryPath}`;
                 let pathName = new Date().getTime() + "文件名.png"
                 let downloadDest = `${storeLocation}/${pathName}`;
@@ -174,6 +165,7 @@ export default class Qrcode extends BaseComponent {
             }
             else {
                 console.log('ios')
+                // IOS 使用 CamerRoll 保存
                 let data = await CameraRoll.saveToCameraRoll(screenShotShowImg)
                 console.log(data)
                 this.showToastForShort(`保存成功！地址如下：\n${data}`)
