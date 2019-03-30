@@ -13,8 +13,9 @@
 const Images = {
 
 
-    erbg:require('./Asset/二维码背景白底.png'),
-    saveer:require('./Asset/保存二维码.png'),
+    erbg: require('./Asset/二维码背景白底.png'),
+    saveer: require('./Asset/保存二维码.png'),
+    ericon: require('./Asset/logo23.png'),
 }
 
 export {Images}

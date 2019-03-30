@@ -93,6 +93,8 @@ class QrcodeViewComponent extends Component {
                             }}>
                             <QRCode style={{marginTop: pxdp.fixHeight(55), marginHorizontal: pxdp.fixHeight(55)}}
                                     value={this.props.qrValue} size={pxdp.fixWidth(pxdp.fixWidth(235))}
+                                    logo={Images.ericon}
+                                    logoSize={pxdp.fixWidth(75)}
                             />
                             <TouchableOpacity onPress={this.props.saveQrcode}>
                                 <Image source={Images.saveer}
@@ -107,9 +109,7 @@ class QrcodeViewComponent extends Component {
                                 </Image>
                             </TouchableOpacity>
                         </View>
-
                     </View>
-
 
                 </Overlay.PopView>
             </View>
