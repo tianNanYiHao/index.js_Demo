@@ -3,14 +3,19 @@ package com.test;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+
+import fr.greweb.reactnativeviewshot.RNViewShotPackage;
+
 import com.horcrux.svg.SvgPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
+import com.reactnativecomponent.barcode.RCTCapturePackage;
+import com.rnfs.RNFSPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.reactnativecomponent.barcode.RCTCapturePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,9 +38,12 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-            new SvgPackage(),
-                    new RCTCapturePackage(),
+                    new RNViewShotPackage(),
+                    new SvgPackage(),
                     new RNSpinkitPackage(),
+                    new RCTCapturePackage(),
+                    new RNFSPackage(),
+                    new RNFetchBlobPackage(),
                     new CodePush(null, getApplicationContext(), BuildConfig.DEBUG)
             );
         }

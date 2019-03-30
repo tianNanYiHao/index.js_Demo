@@ -68,5 +68,9 @@
 	<string>$(CODEPUSH_KEY)</string>
 	<key>NSCameraUsageDescription</key>
 	<string>请求您开发相机权限,以便开放扫码等功能</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>请求您开放相册权限,以便开放扫码等功能</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>请求您开放相册读写权限,以便开放扫码等功能</string>
 </dict>
 </plist>

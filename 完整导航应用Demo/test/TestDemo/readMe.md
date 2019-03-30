@@ -79,5 +79,9 @@ dependencies {
 
 ```
 
+###3.react-native-view-shot 截图库, 在androd端一样处理
+###4.react-native-fs 本地文件访问库, 在androd端一样处理
 
+###5.使用 CamerRoll(仅支持ios)保存图片进相册的时候(报savetoCameraRoll unfinde), 需要xcode中添加静态库依赖,具体百度
+###6.使用 CamerRoll 添加iOS info.plist   NSPhotoLibraryUsageDescription/Photo Library Additions Usage Description
 暂时记录以上
