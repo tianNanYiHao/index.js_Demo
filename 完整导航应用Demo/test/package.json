@@ -19,7 +19,7 @@
     "react-native-svg": "^9.3.6",
     "react-native-swiper": "^1.5.14",
     "react-navigation": "^1.5.11",
-    "teaset": "^0.5.9"
+    "teaset": "^0.5.10"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",

@@ -18,9 +18,7 @@
  */
 
 
-
-
-import React,{Component} from 'react'
+import React, {Component} from 'react'
 import {
     Text,
     View,
@@ -29,40 +27,38 @@ import {
     TouchableOpacity
 } from 'react-native'
 import BaseComponent from "../BaseComponent/BaseComponent";
+import QRcodeView from "../../Component/QRCodeView/QRcodeView";
 
-import QRCode from 'react-native-qrcode-svg'
 
- class Qrcode extends BaseComponent{
+export default class Qrcode extends BaseComponent {
 
 
     componentDidMount() {
-        
+
     }
-    
-    render(){
-        return(
-            <View style={{flex:1}}>
+
+    render() {
+        return (
+            <View style={{flex: 1}}>
                 {this.renderNoLeftItemNaivgationBar('二维码展示,二维码保存')}
-                <QRCode value={'18833928943eeeefffffjcskek2kdjskv2111[sf1'} size={80} color={'#ff3456'}
-                        backgroundColor={'#99ee99'}/>
+
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <TouchableOpacity onPress={() => this.createQrcodeview()}>
+                        <Text>点击显示二维码!!</Text>
+                    </TouchableOpacity>
+
+                </View>
+
             </View>
         )
     }
 
-    scan(){
 
-    }
-
-    _onBarCodeRead(e){
-        console.log(e)
+    createQrcodeview() {
+        QRcodeView.show('i am a qrcode', () => {
+            console.log('----!!!!!!!! touch -----');
+            QRcodeView.hidden()
+        })
     }
 
 }
-
-const styles = StyleSheet.create({
-    itemStyle:{
-    }
-})
-
-
-export default Qrcode
