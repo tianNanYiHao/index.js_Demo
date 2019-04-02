@@ -7,6 +7,8 @@
 
  * @Description: 使用的库 react-native-smart-barcode 二维码扫码库
  *
+ *
+ * // 扫码库
  * npm install react-native-smart-barcode --save
  * npm install react-native-smart-timer-enhance --save
  */

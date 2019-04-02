@@ -5,6 +5,7 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 
 import fr.greweb.reactnativeviewshot.RNViewShotPackage;
+import modules.NativeModulesPackage;
 
 import com.horcrux.svg.SvgPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
@@ -44,6 +45,7 @@ public class MainApplication extends Application implements ReactApplication {
                     new RCTCapturePackage(),
                     new RNFSPackage(),
                     new RNFetchBlobPackage(),
+                    new NativeModulesPackage(),
                     new CodePush(null, getApplicationContext(), BuildConfig.DEBUG)
             );
         }
