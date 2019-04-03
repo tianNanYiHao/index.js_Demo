@@ -71,7 +71,7 @@ export default class Home extends BaseComponent {
                     horizontal={false}
                     keyExtractor={(item, index) => index}
                     columnWrapperStyle={{paddingHorizontal: 5, flexWrap: 'nowrap', alignItems: 'center'}}
-                    numColumns={3}
+                    numColumns={4}
                 />
 
 
@@ -82,9 +82,6 @@ export default class Home extends BaseComponent {
 
 
     /**************************************** 逻辑处理 ****************************************/
-
-
-
 
     cellView(tag) {
 
@@ -159,14 +156,14 @@ const styles = StyleSheet.create({
     cellViewContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 20,
+        margin: 3,
+        paddingHorizontal: 5,
+        paddingVertical: 5,
         backgroundColor: '#0f0',
         borderColor: '#088eff',
         borderWidth: 1,
-        borderRadius: 20,
-        width: (Dimensions.get('window').width - 20 - 40) / 3
+        borderRadius: 10,
+        width: (Dimensions.get('window').width - 10 - 20) / 4
     },
     cellViewText: {
 

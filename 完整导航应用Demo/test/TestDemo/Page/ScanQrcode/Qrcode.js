@@ -51,9 +51,9 @@ import {
 import BaseComponent from "../BaseComponent/BaseComponent";
 import QRcodeView from "../../Component/QRCodeView/QRcodeView"; //自定义二维码组件
 
-import RNFS from 'react-native-fs'; //访问本地文件库
-import RNFetchBlob from 'rn-fetch-blob'; //上传下载库
 
+import  RNFS from 'react-native-fs'
+import RNFetchBlob from 'react-native-fetch-blob'
 
 import {captureScreen} from 'react-native-view-shot' //截图库
 import {Toast} from 'teaset'
@@ -70,8 +70,10 @@ export default class Qrcode extends BaseComponent {
                     <TouchableOpacity onPress={() => this.createQrcodeview(1)}>
                         <Text>
                             {
-                                '点击显示二维码,\n ' +
-                                '保存普通RUL网络图片'
+                                '点击显示二维码\n ' +
+                                'react-native-view-shot获取图片base64\n' +
+                                'android->fs(下载网络图到缓存 \n' +
+                                '保存普通RUL网络图片: android/ios->CamerRoll.saveToCameraRoll()'
                             }
                         </Text>
                     </TouchableOpacity>
@@ -79,7 +81,8 @@ export default class Qrcode extends BaseComponent {
                         <Text style={{marginTop: 20}}>
                             {
                                 '点击显示二维码, \n' +
-                                '安卓调用modules保存图片(ios,CamerRoll)'
+                                'react-native-view-shot获取图片base64\n' +
+                                '保存截图: 安卓调用modules保存图片/ios->CamerRoll.saveToCameraRoll()'
                             }
                         </Text>
                     </TouchableOpacity>
@@ -87,7 +90,9 @@ export default class Qrcode extends BaseComponent {
                         <Text style={{marginTop: 20}}>
                             {
                                 "点击显示二维码,\n " +
-                                "安卓借助fs三方库保存(ios,CamerRoll)"
+                                'react-native-view-shot获取图片base64\n' +
+                                "安卓借助fs(获取路径)/rn-fetch-blob(实现下载)库" +
+                                "保存截图: (android/ios->CamerRoll)"
                             }
                         </Text>
                     </TouchableOpacity>
@@ -124,6 +129,8 @@ export default class Qrcode extends BaseComponent {
                 if (Platform.OS === 'android') {
                     if (tag === 1) { //android 保存一张网络图
                         screenShotShowImg = 'http://img5.imgtn.bdimg.com/it/u=3235021643,1765423594&fm=26&gp=0.jpg'
+                        this.saveImg(screenShotShowImg)
+                        QRcodeView.hidden()
                     }
                     if (tag === 2) { //android 通过mudules保存图片
                         NativeModules.SaveImgBase64.savePicture(base64Data);
@@ -132,6 +139,8 @@ export default class Qrcode extends BaseComponent {
                     }
                     if (tag === 3) { // android 借助fs下载到本地缓存,再用CamerRoll导入相册
                         screenShotShowImg = base64Data; // 目前存在问题, CamerRoll.saveToCameraRoll(tag), tag 必须为URL,或本地URI
+                        this.saveImg(screenShotShowImg,true)
+                        QRcodeView.hidden()
                     }
                 }
 
@@ -139,10 +148,9 @@ export default class Qrcode extends BaseComponent {
                 else {
                     // 'data:image/png;base64,' RFC2397中定义的Data URI scheme，目的是将一些小的数据，直接嵌入到网页中，从而不用再从外部文件载入。
                     screenShotShowImg = `data:image/png;base64,${base64Data}`;
+                    this.saveImg(screenShotShowImg)
+                    QRcodeView.hidden()
                 }
-                this.saveImg(screenShotShowImg)
-
-                QRcodeView.hidden()
             }
             catch (e) {
                 Toast.show('图片保存失败,请重新尝试!')
@@ -181,7 +189,7 @@ export default class Qrcode extends BaseComponent {
     /**************************************** 逻辑处理 ****************************************/
 
     // 保存图片到相册, ios/android 分别调用不同方法
-    async saveImg(screenShotShowImg) {
+    async saveImg(screenShotShowImg, isUseRN_FETCH_BLOB=false) {
 
         ToastUt.showToastForLong('图片保存中...')
 
@@ -195,21 +203,39 @@ export default class Qrcode extends BaseComponent {
 
             // android
             if (Platform.OS === 'android') {
-                // 安卓使用 react-native-fs 保存图片
-                let downloadDest = `${RNFS.ExternalDirectoryPath}/${Math.random() * 1000 | 0}.jpg`;
-                let ret = RNFS.downloadFile({
-                    fromUrl: screenShotShowImg,
-                    toFile: downloadDest,
-                }).promise.then((res) => {
-                    if (res && res.statusCode === 200) {
-                        var promise = CameraRoll.saveToCameraRoll("file://" + downloadDest);
+
+                if (!isUseRN_FETCH_BLOB) {
+                    // 安卓使用 react-native-fs 下载网络图片.再去保存
+                    let time = new Date()
+                    let downloadDest = `${RNFS.ExternalDirectoryPath}/${time.getTime()}.png`;
+                    let ret = RNFS.downloadFile({
+                        fromUrl: screenShotShowImg,
+                        toFile: downloadDest,
+                    }).promise.then((res) => {
+                        if (res && res.statusCode === 200) {
+                            var promise = CameraRoll.saveToCameraRoll("file://" + downloadDest);
+                            promise.then(function (result) {
+                                ToastUt.showToastForShort("图片已保存至相册")
+                            }).catch(function (error) {
+                                ToastUt.showToastForShort("保存失败")
+                            })
+                        }
+                    })
+                }
+                // 安卓使用 react-native-fetch-blob 下载图片,再去保存
+                else {
+                    let time = new Date()
+                    let downloadDest = `${RNFS.ExternalDirectoryPath}/${(time.getTime())}.png`;
+                    RNFetchBlob.fs.writeFile(downloadDest,screenShotShowImg,'base64').then((result)=>{
+                        var promise = CameraRoll.saveToCameraRoll("file://"+downloadDest);
                         promise.then(function (result) {
                             ToastUt.showToastForShort("图片已保存至相册")
-                            }).catch(function (error) {
+                        }).catch(function (error) {
                             ToastUt.showToastForShort("保存失败")
                         })
-                    }
-                })
+                    })
+                }
+
             }
 
             // iOS
@@ -259,11 +285,10 @@ export default class Qrcode extends BaseComponent {
     /**************************************** 工具类 ****************************************/
 
 
-
 }
 
 
-class ToastUt extends Toast{
+class ToastUt extends Toast {
 
 
     static showToastForLong(text) {
