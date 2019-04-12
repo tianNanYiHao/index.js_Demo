@@ -1,0 +1,89 @@
+/**
+*
+* @Author:   tiannanyihao
+* @Date:     2019-04-03 16:22
+* @Profile:  flexCss
+* @Project:  h5
+
+* @Description: 
+*
+*/
+
+
+.body{
+	flex-direction: row;
+	justify-content: center;
+	alignment: center;
+	flex: 1;
+	background-color: antiquewhite;
+
+}
+
+
+/*防止元素内部margin-top塌陷bug,国际通用解决办法,无毒无公害*/
+.clearfix:before,.clearfix:after{
+	content: '';
+	display: table;
+}
+.clearfix:after{
+	clear: both;
+}
+.clearfix{
+	zoom: 1;
+}
+
+
+
+.div0{
+
+	width: 350px;
+	background-color: chocolate;
+	border-radius: 10px;
+	margin: auto;
+	/*border: 1px solid transparent; !*防止元素内部margin-top 塌陷问题, 需要设置一个边框, 边框可以无色透明*!*/
+	/*overflow: hidden; !*防止元素内部margin-top 塌陷问题, 可以设置溢出部分hidden, 可达到解决bug效果*!*/
+	overflow: auto;
+
+
+}
+
+.div1{
+	height: 100px;
+	width: 180px;
+	border-radius: 10px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #09ccee;
+
+}
+
+.div2{
+	height: 80px;
+	width: 200px;
+	margin-top: 10px;
+	border-radius: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: hotpink;
+
+
+}
+
+.list{
+	height: 300px;
+	width: 280px;
+	border: 1px solid #09c089;
+	margin: 10px;
+	list-style: none;
+	padding: 0px;
+}
+
+.list li{
+	height: 50px;
+	width: 50px;
+	background-color: darkgoldenrod;
+	float: left;
+	margin: 10px;
+
+}

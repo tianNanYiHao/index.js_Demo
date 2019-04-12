@@ -1,0 +1,29 @@
+/**
+*
+* @Author:   tiannanyihao
+* @Date:     2019-03-28 20:18
+* @Profile:  main
+* @Project:  h5
+
+* @Description: 
+*
+*/
+
+.titleStyle {
+	font-size: 50px;
+	color: #0f9f8f;
+	margin-top: 50px;
+}
+
+.titleStyle:hover{
+	color: #c9c9c9;
+	font-style: italic;
+}
+
+.itemStyle {
+	font-size: 20px;
+	color: #09ccee;
+	margin-left: 10px;
+	margin-right: 10px;
+
+}
