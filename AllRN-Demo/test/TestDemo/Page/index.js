@@ -29,6 +29,8 @@ import LEventEmitterDemo from './EventEmitterDemo/EventEmitterDemo'
 import LSpinkit from './Spinkit/Spinkit'
 import LQrcode from './ScanQrcode/Qrcode'
 import LScanQrcode from './ScanQrcode/ScanQrcode'
+import LGesturePasswordA from './gesturePassword/GesturePasswordA'
+
 
 
 import LHome from './Home/Home'
@@ -40,6 +42,7 @@ import LHome5 from './Home/Home5'
 
 
 import LLunch from './Lunch/Lunch'
+import GesturePasswordA from "./gesturePassword/GesturePasswordA";
 
 module.exports={
 
@@ -69,6 +72,7 @@ module.exports={
     LSpinkit,
     LQrcode,
     LScanQrcode,
+    LGesturePasswordA,
 
 
 

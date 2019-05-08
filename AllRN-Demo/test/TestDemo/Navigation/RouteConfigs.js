@@ -37,6 +37,7 @@ import {
     LSpinkit,
     LQrcode,
     LScanQrcode,
+    LGesturePasswordA,
 
 
 
@@ -79,6 +80,7 @@ const RouteConfigs = {
         LSpinkit:{screen:LSpinkit},
         LQrcode:{screen:LQrcode},
         LScanQrcode:{screen:LScanQrcode},
+        LGesturePasswordA:{screen:LGesturePasswordA},
 
 
 

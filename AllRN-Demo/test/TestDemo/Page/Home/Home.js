@@ -30,6 +30,7 @@ import BaseComponent from "../BaseComponent/BaseComponent";
 import {LFlatListDemo} from "../index";
 import LResponderDemo from "../ResponderDemo/ResponderDemo";
 import Spinkit from "../Spinkit/Spinkit";
+import LGesturePasswordA from "../gesturePassword/GesturePasswordA";
 
 export default class Home extends BaseComponent {
 
@@ -54,6 +55,7 @@ export default class Home extends BaseComponent {
                 {title: 'Spinkit网络加载动画库'},
                 {title: '二维码展示,保存下载'},
                 {title: '二维码识别'},
+                {title: '手势密码'},
             ]
         };
     }
@@ -127,6 +129,9 @@ export default class Home extends BaseComponent {
         }
         if (tag === 13) {
             this.push('LScanQrcode');
+        }
+        if (tag === 14) {
+            this.push('LGesturePasswordA');
         }
 
 
