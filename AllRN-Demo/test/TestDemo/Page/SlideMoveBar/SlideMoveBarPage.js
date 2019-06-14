@@ -16,7 +16,8 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
-    PanResponder
+    PanResponder,
+    Animated, Easing
 } from 'react-native';
 
 import BaseComponent from "../BaseComponent/BaseComponent";
@@ -30,6 +31,7 @@ export default class SlideMoveBarPage extends BaseComponent {
             backgroundColor: 'red',
             marginTop: 50,
             marginLeft: 50,
+            ccc: new Animated.Value(300),
 
         };
         this.xPoint = this.state.marginLeft; //记录小方块初始的x点坐标
@@ -50,7 +52,7 @@ export default class SlideMoveBarPage extends BaseComponent {
             // 移动
             onPanResponderMove: (evt, gestureState) => {
                 this.setState({
-                    
+
                     // dx/dy ==> 的累积横向路程和纵向路程
                     marginLeft: this.xPoint + gestureState.dx, // 计算x/y 点真实的移动路径数据
                     marginTop: this.yPoint + gestureState.dy,
@@ -75,15 +77,33 @@ export default class SlideMoveBarPage extends BaseComponent {
 
                 <View style={{
                     backgroundColor: '#090', width: 100, height: 100,
-                    marginTop:this.state.marginTop,
-                    marginLeft:this.state.marginLeft
+                    marginTop: this.state.marginTop,
+                    marginLeft: this.state.marginLeft
                 }} {...this._panResponder.panHandlers}>
                     <Text>1</Text>
                 </View>
 
-                <SlideMoveBar/>
+                <SlideMoveBar checkSuccess={()=>{
+                    this.goBackAmination()
+                }}/>
+
+                <Animated.View style={{
+                    backgroundColor: '#00c',
+                    width: 100, height: 100,
+                    marginLeft: this.state.ccc
+                }}/>
 
             </View>
         )
+    }
+
+
+    /**************************************** Description ****************************************/
+    goBackAmination() {
+        Animated.timing(this.state.ccc, {
+            toValue: 0,
+            duration: 500,
+            easing: Easing.bezier(0.44, 0.07, 0.87, 0.34)
+        }).start()
     }
 }
