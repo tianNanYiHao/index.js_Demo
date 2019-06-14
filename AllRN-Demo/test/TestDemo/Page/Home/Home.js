@@ -56,6 +56,7 @@ export default class Home extends BaseComponent {
                 {title: '二维码展示,保存下载'},
                 {title: '二维码识别'},
                 {title: '手势密码'},
+                {title: '滑动验证'},
             ]
         };
     }
@@ -133,7 +134,9 @@ export default class Home extends BaseComponent {
         if (tag === 14) {
             this.push('LGesturePasswordA');
         }
-
+        if (tag === 15) {
+            this.push('LSlideMoveBar');
+        }
 
     }
 

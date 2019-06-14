@@ -38,6 +38,7 @@ import {
     LQrcode,
     LScanQrcode,
     LGesturePasswordA,
+    LSlideMoveBarPage,
 
 
 
@@ -81,6 +82,7 @@ const RouteConfigs = {
         LQrcode:{screen:LQrcode},
         LScanQrcode:{screen:LScanQrcode},
         LGesturePasswordA:{screen:LGesturePasswordA},
+        LSlideMoveBar:{screen:LSlideMoveBarPage},
 
 
 

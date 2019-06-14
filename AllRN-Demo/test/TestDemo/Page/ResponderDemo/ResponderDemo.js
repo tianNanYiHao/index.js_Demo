@@ -28,6 +28,8 @@ import BaseComponent from "../BaseComponent/BaseComponent";
 import pxdp from "../../Common/pxdp";
 
 
+// panResponder详解及Demo //https://blog.csdn.net/njafei/article/details/76551176
+
 export default class ResponderDemo extends BaseComponent {
 
 

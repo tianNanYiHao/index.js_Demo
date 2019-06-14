@@ -30,6 +30,7 @@ import LSpinkit from './Spinkit/Spinkit'
 import LQrcode from './ScanQrcode/Qrcode'
 import LScanQrcode from './ScanQrcode/ScanQrcode'
 import LGesturePasswordA from './gesturePassword/GesturePasswordA'
+import LSlideMoveBarPage from './SlideMoveBar/SlideMoveBarPage'
 
 
 
@@ -73,6 +74,7 @@ module.exports={
     LQrcode,
     LScanQrcode,
     LGesturePasswordA,
+    LSlideMoveBarPage,
 
 
 
