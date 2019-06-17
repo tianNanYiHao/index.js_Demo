@@ -27,10 +27,22 @@ import PropTypes from 'prop-types';
 export default class SlideMoveBar extends Component {
 
     static propTypes = {
-        style: PropTypes.any,
-        checkSuccess: PropTypes.func.isRequired,
+        marginTop:PropTypes.any,
+        defalutBgColor:PropTypes.string,
+        successBgColor:PropTypes.string,
+        defaultTextColor:PropTypes.string,
+        successTextColor:PropTypes.string,
+        checkSuccess: PropTypes.func.isRequired,//回调方法
+        slideItemDefaultImg: PropTypes.any.isRequired, //默认图片
+        slideItemSuccessImg: PropTypes.any.isRequired, //成功图片
     };
-    static defaultProps = {};
+    static defaultProps = {
+        marginTop:0,
+        successBgColor:'#63c226',
+        defalutBgColor:'#F2F2F2',
+        successTextColor:'#fff',
+        defaultTextColor:'#999',
+    };
 
     constructor(props) {
         super(props);
@@ -41,7 +53,7 @@ export default class SlideMoveBar extends Component {
             slideItemMarginTop: 0, //滑块初始位置Y
             slideOver: false, //滑动结束
             slideTip: '请按住滑块,拖动到最右边',// 滑块内部文字
-            slideTipColor: '#999999', //滑块文字颜色
+            slideTipColor: props.defaultTextColor, //滑块文字颜色
         };
         this.xPoint = this.state.slideItemMarginLeft; //滑块x坐标初始位置
         this.yPoint = this.state.slideItemMarginTop; //滑块y左边初始位置
@@ -99,16 +111,15 @@ export default class SlideMoveBar extends Component {
             this.setState({
                 slideOver: true,
                 slideTip: '验证成功',
-                slideTipColor: '#fff'
+                slideTipColor: this.props.successTextColor
             });
-            this.props.checkSuccess() // 执行回调(不可放到释放中执行)
         }
         // 移动中,未满足验证条件
         else {
             this.setState({
                 slideOver: false,
                 slideTip: '请按住滑块,拖动到最右边',
-                slideTipColor: '#999'
+                slideTipColor: this.props.defaultTextColor
             });
         }
 
@@ -123,9 +134,6 @@ export default class SlideMoveBar extends Component {
 
     /*释放*/
     _onPanResponderRelease(evt, gestureState) {
-        // 获取释放后, 最终的xy坐标
-        let slideXEnd = this.xPoint + gestureState.dx;  // 计算x/y 点真实的移动路径数据
-        let slideYEnd = this.yPoint + 0; // y坐标不允许移动
 
         // 释放后, 判断未成功验证
         if (this.state.slideItemMarginLeft < this.xMax) {
@@ -137,11 +145,13 @@ export default class SlideMoveBar extends Component {
 
             // 释放后, 才允许执行回滚动画
             this.goBackAnimation();
+            this.props.checkSuccess(false) // 释放后,执行结果回调(验证未成功)
         }
         // 释放后, 判断为成功验证
         else {
             this.xPoint = this.state.slideItemMarginLeft; //移动结束, 更新当前x/y 点的最新位置
             this.yPoint = this.state.slideItemMarginTop;
+            this.props.checkSuccess(true);  // 释放后,执行结果回调(验证成功)
         }
     }
 
@@ -150,11 +160,11 @@ export default class SlideMoveBar extends Component {
     render() {
         return (
             /* 底色视图*/
-            <View style={[styles.container, this.props.style]} >
+            <View style={[styles.container, {backgroundColor:this.props.defalutBgColor,marginTop:this.props.marginTop,}]}>
 
                 {/*更随底色-绝对布局*/}
                 <Animated.View style={[styles.innerContainer, {
-                    backgroundColor: '#63c226',
+                    backgroundColor: this.props.successBgColor,
                     width: this.currentXPoint,
                     position: 'absolute', top: 0, left: 0
                 }]}/>
@@ -174,13 +184,12 @@ export default class SlideMoveBar extends Component {
                 </View>
 
                 {/*滑块-相对布局*/}
-                {/*<View style={[styles.item, {*/}
-                    {/*marginTop: this.state.slideItemMarginTop,*/}
-                    {/*marginLeft: this.state.slideItemMarginLeft*/}
-                {/*}]} {...this._panResponder.panHandlers}/>*/}
-                <Animated.View style={[styles.item,{
-                    marginLeft:this.currentXPoint
-                }]} {...this._panResponder.panHandlers}/>
+                <Animated.View enabled={!this.state.slideOver} style={[styles.item, {
+                    marginLeft: this.currentXPoint
+                }]} {...this._panResponder.panHandlers}>
+                    <Image style={styles.itemInnerImg}
+                           source={!this.state.slideOver ? this.props.slideItemDefaultImg : this.props.slideItemSuccessImg}/>
+                </Animated.View>
 
             </View>
         )
@@ -219,15 +228,21 @@ const styles = StyleSheet.create({
     container: {
         width: width,
         height: fixHeight(40),
-        backgroundColor: '#778899'
     },
     innerContainer: {
         height: fixHeight(40),
     },
-
     item: {
         width: fixWidth(48),
         height: fixHeight(40),
-        backgroundColor: '#F0FFFF'
+        backgroundColor: '#F1F5FF',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth:1,
+        borderColor:'#D3D3D3'
+    },
+    itemInnerImg: {
+        width: fixWidth(20),
+        height: fixWidth(20),
     }
 })

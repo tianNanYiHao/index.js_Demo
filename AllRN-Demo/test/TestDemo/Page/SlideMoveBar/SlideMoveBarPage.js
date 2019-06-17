@@ -22,6 +22,7 @@ import {
 
 import BaseComponent from "../BaseComponent/BaseComponent";
 import SlideMoveBar from "../../Component/SlideMoveBar/SlideMoveBar";
+import {Images} from "../../src";
 
 export default class SlideMoveBarPage extends BaseComponent {
 
@@ -83,8 +84,17 @@ export default class SlideMoveBarPage extends BaseComponent {
                     <Text>1</Text>
                 </View>
 
-                <SlideMoveBar checkSuccess={()=>{
-                    this.goBackAmination()
+                <SlideMoveBar
+                    marginTop={100}
+                    slideItemDefaultImg={Images.check}
+                    slideItemSuccessImg={Images.chenggong3}
+                    checkSuccess={(res)=>{
+                        if (res){
+                            console.log('success')
+                        }
+                        else{
+                            console.log('err')
+                        }
                 }}/>
 
                 <Animated.View style={{
