@@ -41,7 +41,9 @@ export default class SlideMoveBar extends Component {
         successBgColor:'#63c226',
         defalutBgColor:'#F2F2F2',
         successTextColor:'#fff',
-        defaultTextColor:'#999',
+        defaultTextColor:'#D3D3D3',
+        defaultTip:'请按住滑块,拖动到最右边',
+        successTip:'验证成功'
     };
 
     constructor(props) {
@@ -52,7 +54,7 @@ export default class SlideMoveBar extends Component {
             slideItemMarginLeft: 0, //滑块初始位置X
             slideItemMarginTop: 0, //滑块初始位置Y
             slideOver: false, //滑动结束
-            slideTip: '请按住滑块,拖动到最右边',// 滑块内部文字
+            slideTip: props.defaultTip,// 滑块内部文字
             slideTipColor: props.defaultTextColor, //滑块文字颜色
         };
         this.xPoint = this.state.slideItemMarginLeft; //滑块x坐标初始位置
@@ -110,7 +112,7 @@ export default class SlideMoveBar extends Component {
             slideX = this.xMax;
             this.setState({
                 slideOver: true,
-                slideTip: '验证成功',
+                slideTip:this.props.successTip,
                 slideTipColor: this.props.successTextColor
             });
         }
@@ -118,7 +120,7 @@ export default class SlideMoveBar extends Component {
         else {
             this.setState({
                 slideOver: false,
-                slideTip: '请按住滑块,拖动到最右边',
+                slideTip: this.props.defaultTip,
                 slideTipColor: this.props.defaultTextColor
             });
         }
@@ -195,7 +197,7 @@ export default class SlideMoveBar extends Component {
         )
     }
 
-    /**************************************** Description ****************************************/
+    /**************************************** func ****************************************/
 
     /*执行回退动画*/
     goBackAnimation() {
@@ -206,6 +208,21 @@ export default class SlideMoveBar extends Component {
         }).start()
     }
 
+
+    /**************************************** func_out ****************************************/
+    /*外部可调用clean方法, 清除状态, 可供重复使用*/
+    cleanState(){
+        this.currentXPoint.setValue(0);
+        this.setState({
+            slideItemMarginLeft:0,
+            slideItemMarginTop:0,
+            slideOver:false,
+            slideTip:this.props.defaultTip,
+            slideTipColor:this.props.defaultTextColor,
+        });
+        this.xPoint = 0;
+        this.yPoint = 0;
+    }
 }
 
 
