@@ -28,6 +28,7 @@ export default class SlideMoveBar extends Component {
 
     static propTypes = {
         marginTop:PropTypes.any,
+        marginHorizontal:PropTypes.number,
         defalutBgColor:PropTypes.string,
         successBgColor:PropTypes.string,
         defaultTextColor:PropTypes.string,
@@ -38,12 +39,14 @@ export default class SlideMoveBar extends Component {
     };
     static defaultProps = {
         marginTop:0,
+        margintHorizontal: 20,
         successBgColor:'#63c226',
         defalutBgColor:'#F2F2F2',
         successTextColor:'#fff',
         defaultTextColor:'#D3D3D3',
         defaultTip:'请按住滑块,拖动到最右边',
-        successTip:'验证成功'
+        successTip:'验证成功',
+        marginHorizontal:20
     };
 
     constructor(props) {
@@ -60,7 +63,7 @@ export default class SlideMoveBar extends Component {
         this.xPoint = this.state.slideItemMarginLeft; //滑块x坐标初始位置
         this.yPoint = this.state.slideItemMarginTop; //滑块y左边初始位置
         this.xmin = 0;
-        this.xMax = width - this.slideItmeWidht;
+        this.xMax = (width-2*fixWidth(props.marginHorizontal)) - this.slideItmeWidht;
     }
 
 
@@ -162,7 +165,8 @@ export default class SlideMoveBar extends Component {
     render() {
         return (
             /* 底色视图*/
-            <View style={[styles.container, {backgroundColor:this.props.defalutBgColor,marginTop:this.props.marginTop,}]}>
+            <View style={[styles.container, {width:width-2*fixWidth(this.props.marginHorizontal) ,backgroundColor:this.props.defalutBgColor,marginTop:this.props.marginTop,
+                marginHorizontal:fixWidth(this.props.marginHorizontal)}]}>
 
                 {/*更随底色-绝对布局*/}
                 <Animated.View style={[styles.innerContainer, {
@@ -173,7 +177,7 @@ export default class SlideMoveBar extends Component {
 
                 {/*底部文字视图-绝对布局*/}
                 <View style={{
-                    width: width,
+                    width: width-2*fixWidth(this.props.marginHorizontal),
                     height: fixHeight(40),
                     flexDirection: 'row',
                     justifyContent: 'center',
@@ -182,12 +186,12 @@ export default class SlideMoveBar extends Component {
                     top: 0,
                     left: 0
                 }}>
-                    <Text style={{fontSize: 16, color: this.state.slideTipColor}}>{this.state.slideTip}</Text>
+                    <Text style={{fontSize: 16, color: this.state.slideTipColor, backgroundColor:'transparent'}}>{this.state.slideTip}</Text>
                 </View>
 
                 {/*滑块-相对布局*/}
                 <Animated.View enabled={!this.state.slideOver} style={[styles.item, {
-                    marginLeft: this.currentXPoint
+                    marginLeft: this.currentXPoint,
                 }]} {...this._panResponder.panHandlers}>
                     <Image style={styles.itemInnerImg}
                            source={!this.state.slideOver ? this.props.slideItemDefaultImg : this.props.slideItemSuccessImg}/>
@@ -243,7 +247,6 @@ const fixWidth = (w) => {
 /**************************************** 样式 ****************************************/
 const styles = StyleSheet.create({
     container: {
-        width: width,
         height: fixHeight(40),
     },
     innerContainer: {
