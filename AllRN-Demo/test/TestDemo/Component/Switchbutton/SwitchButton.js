@@ -10,7 +10,7 @@
  */
 
 
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {
   Text,
   Button,
@@ -29,7 +29,7 @@ export default class SwitchButton extends Component {
 
   static propTypes = {
     currentState: PropTypes.bool,
-    changState:PropTypes.any,
+    changState: PropTypes.any,
   }
 
   static defaultProps = {
@@ -42,7 +42,7 @@ export default class SwitchButton extends Component {
     this.state = {
       circleMarginLeft: new Animated.Value(fixHeight(1)),
       backgroundColorForOpen: '#999999', //开启/关闭状态颜色
-      openFlag:props.currentState,
+      openFlag: props.currentState,
     }
   }
 
@@ -54,14 +54,13 @@ export default class SwitchButton extends Component {
     }
   }
 
-//  componentWillReceiveProps(nextProps) {
-//    if (nextProps.currentState) {
-//      this.open()
-//    } else {
-//      this.close()
-//    }
-//  }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentState) {
+      this.open()
+    } else {
+      this.close()
+    }
+  }
 
 
   render() {
@@ -81,30 +80,33 @@ export default class SwitchButton extends Component {
     let openFlag = !this.state.openFlag
     if (openFlag) {
       this.open()
+      this.props.changState(true)
     }
     else {
       this.close()
+      this.props.changState(false)
     }
   }
 
 
   open() {
-    this.props.changState(true)
+    this.openAnimation()
     this.setState({
       backgroundColorForOpen: '#3968FF',
-      openFlag:true,
+      openFlag: true,
     })
-    this.openAnimation()
   }
 
   close() {
-    this.props.changState(false)
+    this.closeAnimation()
     this.setState({
       backgroundColorForOpen: '#999999',
-      openFlag:false,
+      openFlag: false,
     })
-    this.closeAnimation()
   }
+
+
+  /***************** action *****************/
 
   openAnimation() {
     Animated.timing(this.state.circleMarginLeft, {
