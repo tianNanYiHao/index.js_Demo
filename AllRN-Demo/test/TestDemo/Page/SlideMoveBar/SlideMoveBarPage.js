@@ -23,6 +23,7 @@ import {
 import BaseComponent from '../BaseComponent/BaseComponent'
 import SlideMoveBar from '../../Component/SlideMoveBar/SlideMoveBar'
 import {Images} from '../../src'
+import SwitchButton from '../../Component/Switchbutton/SwitchButton'
 
 export default class SlideMoveBarPage extends BaseComponent {
 
@@ -33,6 +34,7 @@ export default class SlideMoveBarPage extends BaseComponent {
             marginTop: 50,
             marginLeft: 50,
             ccc: new Animated.Value(300),
+            open:false,
 
         }
         this.xPoint = this.state.marginLeft //记录小方块初始的x点坐标
@@ -104,12 +106,36 @@ export default class SlideMoveBarPage extends BaseComponent {
                     marginLeft: this.state.ccc,
                 }}/>
 
+                {/*<TouchableOpacity onPress={()=>{*/}
+                    {/*let a = this.state.open;*/}
+                    {/*this.setState({open:!a})*/}
+                {/*}}>*/}
+                    {/*<View style={{width:50,height:50, backgroundColor:'#009'}}/>*/}
+                {/*</TouchableOpacity>*/}
+
+                {/*仿iOS的switch按钮*/}
+                <SwitchButton  currentState={this.state.open} changState={(a)=>{
+                    console.log(a)
+                  this.setState({open:a})
+
+                }}/>
             </View>
         )
     }
 
 
     /**************************************** Description ****************************************/
+    _callback(bool){
+        if (bool){
+            console.log('yes')
+        } else {
+            console.log('no')
+        }
+
+
+    }
+
+
     goBackAmination() {
         Animated.timing(this.state.ccc, {
             toValue: 0,
