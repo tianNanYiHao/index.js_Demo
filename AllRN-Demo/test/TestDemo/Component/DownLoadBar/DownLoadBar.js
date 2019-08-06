@@ -22,6 +22,20 @@ import {
 } from 'react-native'
 import PrettyLog from '../../Common/PrettyLog'
 
+
+const originData = [
+  {color: '#001'},
+  {color: '#002'},
+  {color: '#003'},
+  {color: '#004'},
+  {color: '#005'},
+  {color: '#006'},
+  {color: '#007'},
+  {color: '#008'},
+  {color: '#009'},
+  {color: '#009'},
+]
+
 /***************** 工具属性 *****************/
 const defaultHeight = 667
 const defaultWidth = 375
@@ -46,8 +60,7 @@ export default class DownLoadBar extends Component {
     DLWidth: fixWidth(180),
     DLHeight: fixHeight(30),
     SpaceItemCount: 10, // 格子个数
-
-    currentItem: -1,
+    currentItem: -1, //初始下载数
 
   }
 
@@ -62,18 +75,6 @@ export default class DownLoadBar extends Component {
     this.DLInlIneSpace = fixWidth(2)
     this.spaceItemW = (this.DLInlineViewInW - this.DLInlIneSpace * props.SpaceItemCount) / props.SpaceItemCount
     this.spaceItemH = this.DLInlineViewInH
-    this.orignData = [
-      {color: '#001'},
-      {color: '#002'},
-      {color: '#003'},
-      {color: '#004'},
-      {color: '#005'},
-      {color: '#006'},
-      {color: '#007'},
-      {color: '#008'},
-      {color: '#009'},
-      {color: '#009'},
-    ]
     this.newData = []
     this.state = {}
 
@@ -84,10 +85,14 @@ export default class DownLoadBar extends Component {
       this.newData = []
     }
     else if (this.props.currentItem === 10){
-      this.newData = this.orignData;
+      this.newData = originData;
     }
     else {
-      this.newData.push(this.orignData[this.props.currentItem])
+      this.newData = [];
+      PrettyLog.greenLog(this.props.currentItem+'');
+      this.newData = originData.slice(0,this.props.currentItem);
+      PrettyLog.pinkLog(this.newData)
+
     }
   }
 
