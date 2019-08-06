@@ -31,7 +31,7 @@ import LQrcode from './ScanQrcode/Qrcode'
 import LScanQrcode from './ScanQrcode/ScanQrcode'
 import LGesturePasswordA from './gesturePassword/GesturePasswordA'
 import LSlideMoveBarPage from './SlideMoveBar/SlideMoveBarPage'
-
+import LdownLoadBar from './downLoadBar/downLoadBar'
 
 
 import LHome from './Home/Home'
@@ -43,39 +43,39 @@ import LHome5 from './Home/Home5'
 
 
 import LLunch from './Lunch/Lunch'
-import GesturePasswordA from "./gesturePassword/GesturePasswordA";
+import GesturePasswordA from './gesturePassword/GesturePasswordA'
 
-module.exports={
+module.exports = {
 
-    LLunch,
-    LHome,
-    LHome1,
-    LHome2,
-    LHome3,
-    LHome4,
-    LHome5,
-    LTestDemo,
-    LTeasetSelect,
-    LFetchTest,
-    LAnimatedDemo,
-    LFlatListDemo,
-    LScrollViewDemo,
-    LRenderTest,
-    LAnimation1,
-    LAnimation2,
-    LAnimation3,
-    LAnimation4,
-    LAnimation5,
-    LResponderDemo,
-    LChooseCellIndex,
-    LSwiperDemo,
-    LEventEmitterDemo,
-    LSpinkit,
-    LQrcode,
-    LScanQrcode,
-    LGesturePasswordA,
-    LSlideMoveBarPage,
-
+  LLunch,
+  LHome,
+  LHome1,
+  LHome2,
+  LHome3,
+  LHome4,
+  LHome5,
+  LTestDemo,
+  LTeasetSelect,
+  LFetchTest,
+  LAnimatedDemo,
+  LFlatListDemo,
+  LScrollViewDemo,
+  LRenderTest,
+  LAnimation1,
+  LAnimation2,
+  LAnimation3,
+  LAnimation4,
+  LAnimation5,
+  LResponderDemo,
+  LChooseCellIndex,
+  LSwiperDemo,
+  LEventEmitterDemo,
+  LSpinkit,
+  LQrcode,
+  LScanQrcode,
+  LGesturePasswordA,
+  LSlideMoveBarPage,
+  LdownLoadBar,
 
 
 }

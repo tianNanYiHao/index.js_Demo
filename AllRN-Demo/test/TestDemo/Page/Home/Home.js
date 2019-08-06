@@ -57,6 +57,7 @@ export default class Home extends BaseComponent {
                 {title: '二维码识别'},
                 {title: '手势密码'},
                 {title: '滑动验证'},
+                {title: '下载进度条'},
             ]
         };
     }
@@ -136,6 +137,9 @@ export default class Home extends BaseComponent {
         }
         if (tag === 15) {
             this.push('LSlideMoveBar');
+        }
+        if (tag === 16){
+            this.push('LdownLoadBar');
         }
 
     }

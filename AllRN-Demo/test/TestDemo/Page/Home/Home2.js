@@ -25,6 +25,14 @@ import {addCustomProps} from "../../Common/AddComponetProps";
 
 export default class Home2 extends BaseComponent {
 
+  //组件加载完成
+  componentDidMount() {
+    console.log("=====================================222")
+  }
+
+  componentWillUnmount() {
+    console.log("=====================================333")
+  }
     render() {
         return (
             <View>
