@@ -53,7 +53,6 @@ const fixWidth = (w) => {
 
 export default class DownLoadBar extends Component {
 
-
   static defaultProps = {
     DLLeft: fixWidth(20),
     DLTop: fixHeight(40),
@@ -61,6 +60,7 @@ export default class DownLoadBar extends Component {
     DLHeight: fixHeight(30),
     SpaceItemCount: 10, // 格子个数
     currentItem: -1, //初始下载数
+    type: 'default', // 样式('default', 'lineBar')
 
   }
 
@@ -84,13 +84,13 @@ export default class DownLoadBar extends Component {
     if (this.props.currentItem < 0) {
       this.newData = []
     }
-    else if (this.props.currentItem === 10){
-      this.newData = originData;
+    else if (this.props.currentItem === 10) {
+      this.newData = originData
     }
     else {
-      this.newData = [];
-      PrettyLog.greenLog(this.props.currentItem+'');
-      this.newData = originData.slice(0,this.props.currentItem);
+      this.newData = []
+      PrettyLog.greenLog(this.props.currentItem + '')
+      this.newData = originData.slice(0, this.props.currentItem)
       PrettyLog.pinkLog(this.newData)
 
     }
@@ -101,36 +101,59 @@ export default class DownLoadBar extends Component {
 
     /*更新当前状态*/
     this.getCurrent()
-    return (
-        <View style={{
-          width: this.props.DLWidth,
-          height: this.props.DLHeight, borderWidth: this.borderWidth,
-          borderColor: '#000000', borderRadius: this.borderWidth,
-          marginLeft: this.props.DLLeft, marginTop: this.props.DLTop,
-          backgroundColor: '#000000',
-        }}>
+    if (this.props.type === 'default') {
+      return (
           <View style={{
-            backgroundColor: '#B0E0E6', height: this.DLInlineViewH, width: this.DLInlineViewW,
-            borderWidth: this.DLInlineBorderWidth, borderColor: '#B0E0E6', borderRadius: this.DLInlineBorderWidth,
-            flexDirection: 'row',
+            width: this.props.DLWidth,
+            height: this.props.DLHeight, borderWidth: this.borderWidth,
+            borderColor: '#000000', borderRadius: this.borderWidth,
+            marginLeft: this.props.DLLeft, marginTop: this.props.DLTop,
+            backgroundColor: '#000000',
           }}>
-            <FlatList
-                style={{height: this.DLInlineViewInH, width: this.DLInlineViewInW, flexDirection: 'row'}}
-                data={this.newData}
-                renderItem={({item}) =>
-                    <View style={{
-                      height: this.spaceItemH, width: this.spaceItemW, backgroundColor: item.color, marginLeft: this.DLInlIneSpace,
-                      borderRadius: 3,
-                    }}/>
-                }
-                horizontal={true}
-                keyExtractor={(item, index) => index}
-            />
+            <View style={{
+              backgroundColor: '#B0E0E6', height: this.DLInlineViewH, width: this.DLInlineViewW,
+              borderWidth: this.DLInlineBorderWidth, borderColor: '#B0E0E6', borderRadius: this.DLInlineBorderWidth,
+              flexDirection: 'row',
+            }}>
+              <FlatList
+                  style={{height: this.DLInlineViewInH, width: this.DLInlineViewInW, flexDirection: 'row'}}
+                  data={this.newData}
+                  renderItem={({item}) =>
+                      <View style={{
+                        height: this.spaceItemH, width: this.spaceItemW, backgroundColor: item.color, marginLeft: this.DLInlIneSpace,
+                        borderRadius: 3,
+                      }}/>
+                  }
+                  horizontal={true}
+                  keyExtractor={(item, index) => index}
+              />
+
+            </View>
+          </View>
+      )
+    }
+
+    else if (this.props.type === 'lineBar') {
+      return (
+          <View style={{
+            width: this.props.DLWidth,
+            height: fixHeight(5),
+            borderRadius: 3,
+            marginLeft: this.props.DLLeft, marginTop: this.props.DLTop,
+            backgroundColor: '#000000',
+          }}>
+            <View style={{
+              width: this.props.DLWidth * this.props.currentItem,
+              height: fixHeight(5),
+              borderRadius: 3,
+              backgroundColor: '#090',
+            }}/>
 
           </View>
-        </View>
+      )
+    }
 
-    )
+
   }
 
   renderItem(is) {

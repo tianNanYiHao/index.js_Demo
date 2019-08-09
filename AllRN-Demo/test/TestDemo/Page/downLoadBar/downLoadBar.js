@@ -20,6 +20,8 @@ import {
   Animated, Easing,
 } from 'react-native'
 
+
+
 import BaseComponent from '../BaseComponent/BaseComponent'
 import SlideMoveBar from '../../Component/SlideMoveBar/SlideMoveBar'
 import { Images } from '../../src'
@@ -46,6 +48,7 @@ export default class SlideMoveBarPage extends BaseComponent {
     return (
         <View>
           {this.renderNomalNavigationBar('下载进度条')}
+          <DownLoadBar currentItem={0.7} type={'lineBar'}/>
           <DownLoadBar currentItem={this.state.currentIndex}/>
           <TouchableOpacity style={{backgroundColor: 'red', width: 100, height: 100}} onPress={() => {
             if (this.a ===10){
