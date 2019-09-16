@@ -85,3 +85,6 @@ dependencies {
 ###5.使用 CamerRoll(仅支持ios)保存图片进相册的时候(报savetoCameraRoll unfinde), 需要xcode中添加静态库依赖,具体百度
 ###6.使用 CamerRoll 添加iOS info.plist   NSPhotoLibraryUsageDescription/Photo Library Additions Usage Description
 暂时记录以上
+
+###7.使用 https://github.com/TronNatthakorn/react-native-wheel-pick.git, 安卓版本需要在gradule中,改成 compile fileTree(dir: 
+'libs', include: ['*.jar']) 记住, 全部改成 compile
