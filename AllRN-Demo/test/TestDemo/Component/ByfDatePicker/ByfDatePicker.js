@@ -14,6 +14,7 @@ import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import { Overlay } from 'teaset'
 import { Picker, DatePicker } from 'react-native-wheel-pick'
+// https://github.com/TronNatthakorn/react-native-wheel-pick.git 注意改gradle中的依赖关键字compile
 
 
 /***************** 工具属性 *****************/
