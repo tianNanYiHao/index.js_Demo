@@ -39,7 +39,6 @@ export default class Home extends BaseComponent {
         super(props);
 
         this.state = {
-
             data: [
                 {title: '路由跳转demo'},
                 {title: '胡乱测试demo'},
@@ -58,6 +57,7 @@ export default class Home extends BaseComponent {
                 {title: '手势密码'},
                 {title: '滑动验证'},
                 {title: '下载进度条'},
+                {title: '日期选择器'},
             ]
         };
     }
@@ -140,6 +140,9 @@ export default class Home extends BaseComponent {
         }
         if (tag === 16){
             this.push('LdownLoadBar');
+        }
+         if (tag === 17){
+        this.push('LDatePicker');
         }
 
     }

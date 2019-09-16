@@ -40,6 +40,7 @@ import {
   LGesturePasswordA,
   LSlideMoveBarPage,
   LdownLoadBar,
+  LDatePicker,
 
 
 } from '../Page'
@@ -83,6 +84,7 @@ const RouteConfigs = {
     LGesturePasswordA: {screen: LGesturePasswordA},
     LSlideMoveBar: {screen: LSlideMoveBarPage},
     LdownLoadBar: {screen: LdownLoadBar},
+    LDatePicker: {screen: LDatePicker},
 
 
   }),

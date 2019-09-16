@@ -32,6 +32,7 @@ import LScanQrcode from './ScanQrcode/ScanQrcode'
 import LGesturePasswordA from './gesturePassword/GesturePasswordA'
 import LSlideMoveBarPage from './SlideMoveBar/SlideMoveBarPage'
 import LdownLoadBar from './downLoadBar/downLoadBar'
+import LDatePicker from './datepicker/DatePicker'
 
 
 import LHome from './Home/Home'
@@ -44,6 +45,7 @@ import LHome5 from './Home/Home5'
 
 import LLunch from './Lunch/Lunch'
 import GesturePasswordA from './gesturePassword/GesturePasswordA'
+import DatePicker from './datepicker/DatePicker'
 
 module.exports = {
 
@@ -76,6 +78,7 @@ module.exports = {
   LGesturePasswordA,
   LSlideMoveBarPage,
   LdownLoadBar,
+  LDatePicker,
 
 
 }

@@ -144,6 +144,10 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-wheel-pick')
+    compile project(':react-native-wheel-pick')
+    compile project(':react-native-date-picker')
+    compile project(':react-native-date-picker')
     compile project(':react-native-fs')
     compile project(':react-native-fs')
     compile project(':react-native-fetch-blob')

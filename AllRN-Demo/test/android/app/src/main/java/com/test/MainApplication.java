@@ -3,6 +3,10 @@ package com.test;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.tron.ReactNativeWheelPickerPackage;
+import com.tron.ReactNativeWheelPickerPackage;
+import com.henninghall.date_picker.DatePickerPackage;
+import com.henninghall.date_picker.DatePickerPackage;
 import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 
@@ -42,6 +46,10 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new ReactNativeWheelPickerPackage(),
+            new ReactNativeWheelPickerPackage(),
+            new DatePickerPackage(),
+            new DatePickerPackage(),
                     new RNFSPackage(),
                     new RNFetchBlobPackage(),
                     new RNViewShotPackage(),
