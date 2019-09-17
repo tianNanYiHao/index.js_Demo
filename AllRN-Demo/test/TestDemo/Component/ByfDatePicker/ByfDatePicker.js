@@ -101,7 +101,7 @@ class DatePickerComponent extends Component {
             <TouchableOpacity onPress={() => {
               this.props.cancle(1)
             }}>
-              <Text style={[style.textNav, []]}>取消</Text>
+              <Text style={[style.textNav, {width:50, height:50, lineHeight:50,}]}>取消</Text>
             </TouchableOpacity>
 
             <Text style={{color: '#000', fontSize: 18}}>选择时间</Text>
@@ -109,7 +109,7 @@ class DatePickerComponent extends Component {
             <TouchableOpacity onPress={() => {
               this.props.over([this.state.dateYear,this.state.dateMonth])
             }}>
-              <Text style={[style.textNav, []]}>完成</Text>
+              <Text style={[style.textNav, {textAlign:'right'},{width:50, height:50, lineHeight:50,}]}>完成</Text>
             </TouchableOpacity>
 
           </View>
