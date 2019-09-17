@@ -35,6 +35,7 @@ export default class DatePicker1 extends BaseComponent {
           <TouchableOpacity onPress={() => {
             let dataPicker = new ByfDatePicker()
             dataPicker.show((dateArr)=>{
+              if (dateArr===null) return;
               this.setState({
                 date:dateArr[0]+dateArr[1]
               })
@@ -42,7 +43,7 @@ export default class DatePicker1 extends BaseComponent {
 
 
           }}>
-            <View style={{backgroundColor: '#090', height: 100, width: 100}}>
+            <View style={{backgroundColor: '#ee1', height: 100, width: 100}}>
               <Text>{this.state.date}</Text>
             </View>
           </TouchableOpacity>

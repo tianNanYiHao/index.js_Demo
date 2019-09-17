@@ -12,9 +12,14 @@
 
 import React, { Component } from 'react'
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
-import { Overlay } from 'teaset'
+import { Overlay,Theme } from 'teaset'
 import { Picker, DatePicker } from 'react-native-wheel-pick'
 // https://github.com/TronNatthakorn/react-native-wheel-pick.git 注意改gradle中的依赖关键字compile
+/*
+* npm install react-native-wheel-pick
+* react-native link react-native-wheel-pick
+* */
+
 
 
 /***************** 工具属性 *****************/
@@ -44,8 +49,8 @@ class DatePickerComponent extends Component {
 
   constructor(props) {
     super(props)
-    let currentyear = new Date().getFullYear()
-    let currentMonty = (new Date().getMonth() + 1)
+    let currentyear = new Date().getFullYear();
+    let currentMonty = (new Date().getMonth() + 1);
     this.state = {
       dateYear: currentyear + '年',
       dateMonth: currentMonty < 10 ? '0' + currentMonty +'月': currentMonty+'月',
@@ -73,8 +78,7 @@ class DatePickerComponent extends Component {
 
   render() {
     return (
-        <View style={{backgroundColor: '#fff', width: width, height: fixHeight(72 + 375)}}>
-
+        <View style={{backgroundColor: '#fff', width: width, height: fixHeight(64 + 375)+Theme.statusBarHeight}}>
           {this.renderNav()}
           {this.renderDate()}
           {this.renderDatePicker()}
@@ -86,25 +90,29 @@ class DatePickerComponent extends Component {
   // 导航条
   renderNav() {
     return (
-        <View style={{
-          height: fixHeight(72), width: width, backgroundColor: '#fff', paddingLeft: fixWidth(14), paddingRight: fixWidth(14),
-          flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderColor: '#EFEFEF', borderBottomWidth: 0.8,
-        }}>
+        <View>
+          <View style={{width:width,height:Theme.statusBarHeight}}/>
 
-          <TouchableOpacity onPress={() => {
-            this.props.cancle(1)
+          <View style={{
+            height: fixHeight(64), width: width, backgroundColor: '#fff', paddingHorizontal:fixWidth(14),
+            flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderColor: '#EFEFEF', borderBottomWidth: 0.8,
           }}>
-            <Text style={[style.textNav, []]}>取消</Text>
-          </TouchableOpacity>
 
-          <Text style={{color: '#000', fontSize: 18}}>选择时间</Text>
+            <TouchableOpacity onPress={() => {
+              this.props.cancle(1)
+            }}>
+              <Text style={[style.textNav, []]}>取消</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => {
-            this.props.over([this.state.dateYear,this.state.dateMonth])
-          }}>
-            <Text style={[style.textNav, []]}>完成</Text>
-          </TouchableOpacity>
+            <Text style={{color: '#000', fontSize: 18}}>选择时间</Text>
 
+            <TouchableOpacity onPress={() => {
+              this.props.over([this.state.dateYear,this.state.dateMonth])
+            }}>
+              <Text style={[style.textNav, []]}>完成</Text>
+            </TouchableOpacity>
+
+          </View>
         </View>
     )
   }
@@ -163,7 +171,7 @@ const style = StyleSheet.create({
 })
 
 
-class DatePickerView {
+class ByfDatePicker {
 
   constructor() {
     this.key = ''
@@ -180,10 +188,11 @@ class DatePickerView {
         >
           <DatePickerComponent
               cancle={(param) => {
+                callback(null);
                 this.hidden()
               }}
               over={(param) => {
-                callback(param)
+                callback(param);
                 this.hidden()
               }}
           />
@@ -201,6 +210,6 @@ class DatePickerView {
 }
 
 
-export default DatePickerView
+export default ByfDatePicker
 
 
